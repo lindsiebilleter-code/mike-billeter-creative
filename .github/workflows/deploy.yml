@@ -1,0 +1,35 @@
+name: Deploy to FTP
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: SamKirkland/FTP-Deploy-Action@4.3.2
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          local-dir: ./
+          # The action uploads only what changed since the state file it keeps
+          # on the server. That record had drifted from the server (it listed
+          # folders such as assets/door/colors that no longer exist there), so
+          # every deploy since the CMS began syncing uploads to GitHub stopped
+          # with "553 Can't open that file". A new state file name makes the
+          # next run upload everything once and create every folder; after
+          # that, runs are incremental again. If it drifts again, bump the
+          # number.
+          state-name: .ftp-deploy-sync-state-v2.json
+          exclude: |
+            **/.git/**
+            **/.github/**
+            **/node_modules/**
+            **/tools/**
+            README.md
+            .gitignore
