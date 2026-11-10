@@ -1,0 +1,35 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>A — The line (a pen stroke drawn through space)</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500&display=swap">
+<style>html,body{margin:0;height:100%;background:#fff;color:#0a0a0a;font-family:'Space Grotesk',system-ui,sans-serif;overflow:hidden}
+#hero{position:relative;height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:40px clamp(16px,3vw,40px) clamp(24px,4vw,56px);cursor:grab}
+canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+h1{position:relative;margin:0;font-weight:500;font-size:clamp(38px,8.4vw,136px);line-height:1.04;letter-spacing:-.035em;pointer-events:none}
+h1 span{display:block}h1 .g{color:#0b7a3e}
+.tag{position:absolute;top:18px;left:clamp(16px,3vw,40px);font-size:15px;font-weight:500}</style></head>
+<body><section id="hero"><canvas id="c"></canvas><p class="tag">A — The line (a pen stroke drawn through space)</p>
+<h1><span>Most copywriter websites</span><span>sound like most</span><span>copywriter websites.</span><span class="g">This one tries not to.</span></h1></section>
+<script type="module">
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js';
+const parent=document.getElementById('hero'),canvas=document.getElementById('c');
+const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+const scene=new THREE.Scene();const camera=new THREE.PerspectiveCamera(38,1,.1,100);camera.position.set(0,0,15);
+let tx=0,ty=0,px=0,py=0,spin=0,spinV=0,drag=false,lx=0;
+addEventListener('pointermove',e=>{const r=parent.getBoundingClientRect();tx=(e.clientX-r.left)/r.width-.5;ty=(e.clientY-r.top)/r.height-.5;if(drag){const d=(e.clientX-lx)/r.width*Math.PI*1.6;spin+=d;spinV=d;lx=e.clientX}});
+parent.addEventListener('pointerdown',e=>{drag=true;lx=e.clientX;spinV=0;parent.style.cursor='grabbing'});addEventListener('pointerup',()=>{drag=false;parent.style.cursor='grab'});
+const size=()=>{const w=parent.clientWidth,h=parent.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();camera.position.z=w<700?20:15};size();addEventListener('resize',size);
+
+const pts=[];for(let i=0;i<14;i++){pts.push(new THREE.Vector3((i/13-.5)*22,(Math.random()-.5)*7*Math.sin(i*1.3),(Math.random()-.5)*6))}
+const curve=new THREE.CatmullRomCurve3(pts,false,'centripetal',.6);
+const SEG=1400;const tube=new THREE.TubeGeometry(curve,SEG,.07,10,false);
+const mat=new THREE.MeshBasicMaterial({color:0x0b7a3e});const mesh=new THREE.Mesh(tube,mat);
+const idx=tube.index.count;tube.setDrawRange(0,0);
+// the struck draft: a gray line behind
+const pts2=pts.map(p=>p.clone().add(new THREE.Vector3(0,-1.6+Math.random()*.4,-1.5)));
+const tube2=new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts2,false,'centripetal',.6),SEG,.045,8,false);
+const mesh2=new THREE.Mesh(tube2,new THREE.MeshBasicMaterial({color:0xd6d6d6}));
+const g=new THREE.Group();g.add(mesh2,mesh);scene.add(g);
+let t0=performance.now();
+(function loop(now){requestAnimationFrame(loop);const t=(now-t0)/1000;px+=(tx-px)*.04;py+=(ty-py)*.04;if(!drag){spin+=spinV;spinV*=.94}
+const p=(t*.12)%1.25;tube.setDrawRange(0,Math.floor(idx*Math.min(1,p)));mat.opacity=p>1?1-(p-1)*4:1;mat.transparent=true;
+g.rotation.y=px*.5+spin;g.rotation.x=py*.3+Math.sin(t*.2)*.08;g.position.y=1.2;renderer.render(scene,camera)})(t0);
+</script></body></html>

@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Mike Billeter is a copywriter. Website copy, email campaigns, editing, blog posts, and ghostwriting that sound like somebody wrote them.">
+  <meta name="theme-color" id="mbwThemeColor" content="#ffffff">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mike Billeter Writing">
+  <meta property="og:title" content="Mike Billeter Writing — Copy that sounds like somebody wrote it">
+  <meta property="og:description" content="Most copywriter websites sound like most copywriter websites. This one tries not to.">
+  <meta property="og:image" content="assets/mike-square-800.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Mike Billeter Writing","description":"Copywriting, editing, and ghostwriting by Mike Billeter.","email":"mike.billeter@gmail.com","founder":{"@type":"Person","name":"Mike Billeter","jobTitle":"Copywriter"},"areaServed":"United States","address":{"@type":"PostalAddress","addressLocality":"Sioux Falls","addressRegion":"SD","addressCountry":"US"},"priceRange":"$300–$1,800+","knowsAbout":["Website copy","Email campaigns","Editing","Blog posts","Ghostwriting"]}</script>
+  <style>
+    html { -webkit-text-size-adjust: 100%; }
+    body { margin: 0; background: #ffffff; color: #0a0a0a; font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 18px; line-height: 1.5; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+    a:hover { color: #0b7a3e; }
+    ::selection { background: #0b7a3e; color: #fff; }
+    :focus-visible { outline: 2px solid #0b7a3e; outline-offset: 3px; }
+    summary::-webkit-details-marker { display: none; }
+    input, textarea, button { font: inherit; }
+    @keyframes mbwCrtOut { 0% { opacity: 0; background: #fff; transform: scaleY(1); } 18% { opacity: 1; background: #fff; transform: scaleY(1); } 55% { opacity: 1; background: #fff; transform: scaleY(0.006); } 56% { opacity: 1; background: #000; transform: scaleY(1); } 100% { opacity: 1; background: #000; transform: scaleY(1); } }
+    @keyframes mbwCrtIn { 0% { opacity: 1; } 45% { opacity: 1; } 100% { opacity: 0; } }
+    @keyframes mbwCaret { 50% { opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }
+  </style>
+</helmet>
+
+<sc-if value="{{ fxOut }}" hint-placeholder-val="{{ false }}">
+  <div aria-hidden="true" style="position: fixed; inset: 0; z-index: 9999; pointer-events: none; transform-origin: 50% 50%; animation: mbwCrtOut 700ms cubic-bezier(.7,0,.3,1) both;"></div>
+</sc-if>
+<sc-if value="{{ fxIn }}" hint-placeholder-val="{{ false }}">
+  <div aria-hidden="true" style="position: fixed; inset: 0; z-index: 9999; pointer-events: none; background: repeating-linear-gradient(0deg, #000 0 2px, #0a0a1a 2px 4px); animation: mbwCrtIn 520ms ease-out both;"></div>
+</sc-if>
+
+<sc-if value="{{ isY2k }}" hint-placeholder-val="{{ false }}">
+  <dc-import name="Y2K Mode" route="{{ route }}" anchor="{{ anchor }}" on-exit="{{ exitY2k }}" hint-size="100%,100vh"></dc-import>
+</sc-if>
+
+<sc-if value="{{ isModern }}" hint-placeholder-val="{{ true }}">
+<div style="min-height: 100vh; display: flex; flex-direction: column; background: #fff; color: #0a0a0a;">
+  <a href="#main" style="position: absolute; left: 12px; top: -60px; z-index: 100; padding: 8px 14px; background: #fff; color: #0a0a0a; border: 1px solid #0a0a0a; font-size: 15px;" style-focus="top: 12px;">Skip to content</a>
+
+  <header style="position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.92); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);">
+    <nav aria-label="Main" style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 28px; padding: 18px clamp(16px, 3vw, 40px); font-size: 15px; font-weight: 500;">
+      <a href="#/" style="text-decoration: none; margin-right: auto;" style-hover="color: #0b7a3e;">Mike Billeter Creative<sup style="font-size: 9px; vertical-align: super; margin-left: 2px;">®</sup></a>
+      <a href="#/services" aria-current="{{ curServices }}" style="text-decoration: none; padding: 4px 0;" style-hover="color: #0b7a3e;">Services</a>
+      <a href="#/process" aria-current="{{ curProcess }}" style="text-decoration: none; padding: 4px 0;" style-hover="color: #0b7a3e;">Process</a>
+      <a href="#/about" aria-current="{{ curAbout }}" style="text-decoration: none; padding: 4px 0;" style-hover="color: #0b7a3e;">About</a>
+      <a href="#/contact" aria-current="{{ curContact }}" style="text-decoration: none; padding: 4px 0;" style-hover="color: #0b7a3e;">Contact</a>
+    </nav>
+  </header>
+
+  <main id="main" ref="{{ mainRef }}" tabindex="-1" style="flex: 1; outline: none;">
+
+    <!-- ═══════════════ HOME ═══════════════ -->
+    <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+    <div data-screen-label="Home">
+      <section aria-labelledby="hero-title" style="position: relative; background: #fafaf7; min-height: calc(100vh - 62px); display: flex; flex-direction: column; justify-content: flex-end; padding: 40px clamp(16px, 3vw, 40px) clamp(24px, 4vw, 56px); overflow: hidden;">
+        <canvas ref="{{ canvasRef }}" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none;"></canvas>
+        <h1 id="hero-title" style="position: relative; margin: 0; font-weight: 500; font-size: clamp(38px, 8.4vw, 136px); line-height: 1.04; letter-spacing: -0.035em; text-wrap: balance;">
+          <span style="display: block; overflow: hidden; padding-bottom: 0.08em; margin-bottom: -0.08em;"><span data-hero-line="1" style="display: block;">Most copywriter websites</span></span>
+          <span style="display: block; overflow: hidden; padding-bottom: 0.08em; margin-bottom: -0.08em;"><span data-hero-line="2" style="display: block;">sound like most</span></span>
+          <span style="display: block; overflow: hidden; padding-bottom: 0.08em; margin-bottom: -0.08em;"><span data-hero-line="3" style="display: block;">copywriter websites.</span></span>
+          <span style="display: block; overflow: hidden; padding-bottom: 0.08em; margin-bottom: -0.08em;"><span data-hero-line="4" style="display: block; color: #0b7a3e;">This one tries not to.</span></span>
+        </h1>
+      </section>
+
+      <section aria-label="Introduction" style="padding: clamp(40px, 6vw, 96px) clamp(16px, 3vw, 40px); display: flex; flex-wrap: wrap; gap: 40px 64px; align-items: flex-start;">
+        <div aria-hidden="true" style="flex: 1 1 min(100%, 28rem); max-width: 40rem; min-height: 110px;">{{ editLine }}</div>
+        <p style="position: absolute; left: -9999px;">Find the specific thing that makes a business different, and say it in a way people actually remember.</p>
+        <div data-reveal style="flex: 1 1 min(100%, 30rem); max-width: 40rem;">
+          <p style="font-size: clamp(20px, 2vw, 26px); line-height: 1.35; margin: 0 0 1em; text-wrap: pretty;">I’m Mike Billeter. I’ve spent almost twenty years writing for a living. For non-profits and national food brands. For private banks and universities. And for a bunch of people and businesses in between. What I do differently from most writers is find the specific thing that makes a business different, and say it in a way people actually remember.</p>
+          <p style="font-size: clamp(20px, 2vw, 26px); line-height: 1.35; margin: 0 0 1.2em; text-wrap: pretty;">If your website or product’s copy could belong to any of your competitors, it probably does. That’s the problem I fix.</p>
+          <a href="#/process" style="display: inline-block; font-size: 17px; font-weight: 500; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px;" style-hover="color: #0b7a3e;">See how this works</a>
+        </div>
+      </section>
+
+      <figure style="margin: 0; padding: 0 clamp(16px, 3vw, 40px); overflow: hidden;">
+        <div style="overflow: hidden; aspect-ratio: 16 / 9; max-height: 82vh; background: #f2f2f2;">
+          <img data-parallax src="assets/mike-1000.jpg" srcset="assets/mike-600.jpg 600w, assets/mike-1000.jpg 1000w, assets/mike-1600.jpg 1600w" sizes="100vw" width="1734" height="2048" alt="Mike Billeter, smiling, in glasses and a blue plaid shirt against a plain gray studio backdrop." style="display: block; width: 100%; height: 140%; margin-top: -20%; object-fit: cover; object-position: 50% 22%; filter: grayscale(1); transition: filter .6s ease;" style-hover="filter: grayscale(0);">
+        </div>
+        <figcaption style="font-size: 14px; margin: 12px 0 0; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 24px;"><span>Mike Billeter</span><span>Copywriter, one-person operation</span></figcaption>
+      </figure>
+
+      <section aria-labelledby="problem-title" style="padding: clamp(72px, 10vw, 160px) clamp(16px, 3vw, 40px) clamp(48px, 7vw, 112px); display: flex; flex-wrap: wrap; gap: 32px 64px; align-items: flex-start;">
+        <h2 id="problem-title" data-reveal style="flex: 1 1 min(100%, 18rem); max-width: 26rem; margin: 0; font-weight: 500; font-size: clamp(28px, 3.6vw, 52px); line-height: 1.02; letter-spacing: -0.025em; text-wrap: balance;">Here’s what’s actually happening to your copy.</h2>
+        <div data-reveal-group style="flex: 999 1 min(100%, 30rem); max-width: 40rem;">
+          <p style="margin: 0 0 1em; text-wrap: pretty;">You know your business is different. You can feel it. The way you talk about it over coffee, the way you describe it to a friend who asks what you do — there’s a specific personality in there, and it’s the reason people choose you over the competition.</p>
+          <p style="margin: 0 0 1em; text-wrap: pretty;">Then it hits the website, and somehow it comes out sounding like every other business in your industry.</p>
+          <p style="margin: 0 0 1em; text-wrap: pretty;">That’s not a you problem. That’s a writing problem. Most copy gets written the same way it’s always been written: pull the same words and phrases from the same bucket, smooth out anything interesting or different, end up with something that’s technically correct and totally forgettable. AI hasn’t helped — it’s made the bucket bigger and the words smoother. And it’s jacked up the forgettability a few levels.</p>
+          <p style="margin: 0; text-wrap: pretty;">What’s missing is somebody whose actual job is to listen to how you talk about your business, find the parts that make it sound like yours, and put those parts on the page in a way that doesn’t bury your voice.</p>
+        </div>
+      </section>
+      <p data-scale style="margin: 0; padding: 0 clamp(16px, 3vw, 40px) clamp(72px, 10vw, 160px); font-weight: 500; font-size: clamp(44px, 9vw, 150px); line-height: 0.92; letter-spacing: -0.04em; transform-origin: left center;">That’s what I do.</p>
+
+      <section aria-labelledby="services-title" style="padding: 0 clamp(16px, 3vw, 40px) clamp(72px, 10vw, 160px);">
+        <div style="display: flex; flex-wrap: wrap; gap: 24px 64px; align-items: flex-end; justify-content: space-between; margin-bottom: 32px;">
+          <h2 id="services-title" data-reveal style="flex: 1 1 min(100%, 28rem); max-width: 40rem; margin: 0; font-weight: 500; font-size: clamp(28px, 3.6vw, 52px); line-height: 1.02; letter-spacing: -0.025em; text-wrap: balance;">This is the part where most copywriter websites list their services in a way that makes them all sound identical. So here are mine.</h2>
+          <a href="#/services" data-reveal style="font-size: 17px; font-weight: 500; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px; margin-bottom: 6px;" style-hover="color: #0b7a3e;">Full pricing and what’s included</a>
+        </div>
+        <ul data-reveal-group style="list-style: none; margin: 0; padding: 0; border-top: 1px solid #0a0a0a;">
+          <li style="border-bottom: 1px solid #0a0a0a;"><a href="#/services/website-copy" style="display: flex; flex-wrap: wrap; gap: 4px 32px; align-items: baseline; justify-content: space-between; padding: 22px 0; text-decoration: none;" style-hover="color: #0b7a3e;"><span style="font-weight: 500; font-size: clamp(26px, 4.2vw, 64px); line-height: 1; letter-spacing: -0.03em;">Website Copy</span><span style="font-size: clamp(16px, 1.4vw, 20px); font-variant-numeric: tabular-nums;">Starts at $900</span><span style="flex-basis: 100%; font-size: 16px; line-height: 1.45; max-width: 44rem; margin-top: 6px; text-wrap: pretty;">The thing most people hire me for. Three packages depending on how much site you need written — from a tight three-page starter to a full site build.</span></a></li>
+          <li style="border-bottom: 1px solid #0a0a0a;"><a href="#/services/email-campaigns" style="display: flex; flex-wrap: wrap; gap: 4px 32px; align-items: baseline; justify-content: space-between; padding: 22px 0; text-decoration: none;" style-hover="color: #0b7a3e;"><span style="font-weight: 500; font-size: clamp(26px, 4.2vw, 64px); line-height: 1; letter-spacing: -0.03em;">Email Campaigns</span><span style="font-size: clamp(16px, 1.4vw, 20px); font-variant-numeric: tabular-nums;">Starts at $650</span><span style="flex-basis: 100%; font-size: 16px; line-height: 1.45; max-width: 44rem; margin-top: 6px; text-wrap: pretty;">Sequences that get opened, get read, and don’t sound like they were written by a robot pretending to be a friendly human.</span></a></li>
+          <li style="border-bottom: 1px solid #0a0a0a;"><a href="#/services/editing" style="display: flex; flex-wrap: wrap; gap: 4px 32px; align-items: baseline; justify-content: space-between; padding: 22px 0; text-decoration: none;" style-hover="color: #0b7a3e;"><span style="font-weight: 500; font-size: clamp(26px, 4.2vw, 64px); line-height: 1; letter-spacing: -0.03em;">Editing</span><span style="font-size: clamp(16px, 1.4vw, 20px); font-variant-numeric: tabular-nums;">$150/hour, two-hour minimum</span><span style="flex-basis: 100%; font-size: 16px; line-height: 1.45; max-width: 44rem; margin-top: 6px; text-wrap: pretty;">For businesses that already have copy they mostly like and want it sharper, tighter, and more distinctly theirs.</span></a></li>
+          <li style="border-bottom: 1px solid #0a0a0a;"><a href="#/services/blog-posts" style="display: flex; flex-wrap: wrap; gap: 4px 32px; align-items: baseline; justify-content: space-between; padding: 22px 0; text-decoration: none;" style-hover="color: #0b7a3e;"><span style="font-weight: 500; font-size: clamp(26px, 4.2vw, 64px); line-height: 1; letter-spacing: -0.03em;">Blog Posts &amp; Articles</span><span style="font-size: clamp(16px, 1.4vw, 20px); font-variant-numeric: tabular-nums;">Starts at $300</span><span style="flex-basis: 100%; font-size: 16px; line-height: 1.45; max-width: 44rem; margin-top: 6px; text-wrap: pretty;">600–900 words of content that doesn’t read like everyone else’s content.</span></a></li>
+          <li style="border-bottom: 1px solid #0a0a0a;"><a href="#/services/ghostwriting" style="display: flex; flex-wrap: wrap; gap: 4px 32px; align-items: baseline; justify-content: space-between; padding: 22px 0; text-decoration: none;" style-hover="color: #0b7a3e;"><span style="font-weight: 500; font-size: clamp(26px, 4.2vw, 64px); line-height: 1; letter-spacing: -0.03em;">Ghostwriting</span><span style="font-size: clamp(16px, 1.4vw, 20px); font-variant-numeric: tabular-nums;">Hourly at $150</span><span style="flex-basis: 100%; font-size: 16px; line-height: 1.45; max-width: 44rem; margin-top: 6px; text-wrap: pretty;">Long-form, short-form, LinkedIn posts, whatever you need written in your voice.</span></a></li>
+          <li style="border-bottom: 1px solid #0a0a0a;"><a href="#/services/retainers" style="display: flex; flex-wrap: wrap; gap: 4px 32px; align-items: baseline; justify-content: space-between; padding: 22px 0; text-decoration: none;" style-hover="color: #0b7a3e;"><span style="font-weight: 500; font-size: clamp(26px, 4.2vw, 64px); line-height: 1; letter-spacing: -0.03em;">Ongoing Retainer</span><span style="font-size: clamp(16px, 1.4vw, 20px); font-variant-numeric: tabular-nums;">$150/hour, three-hour monthly minimum</span><span style="flex-basis: 100%; font-size: 16px; line-height: 1.45; max-width: 44rem; margin-top: 6px; text-wrap: pretty;">For businesses that need writing on a regular basis and would rather not start from scratch every time.</span></a></li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="clients-title" style="padding: 0 clamp(16px, 3vw, 40px) clamp(72px, 10vw, 160px);">
+        <h2 id="clients-title" data-reveal style="margin: 0 0 28px; font-size: 15px; font-weight: 500;">Some companies and organizations I’ve written for.</h2>
+        <p data-reveal style="margin: 0 0 28px; font-weight: 500; font-size: clamp(28px, 4.6vw, 72px); line-height: 1.02; letter-spacing: -0.03em; text-wrap: pretty;">Otis Spunkmeyer. Lamb Weston. Borden. Kerry Beverages. McDonald’s. The Good Samaritan Society. Passenger Productions. Dordt University. First Dakota National Bank.</p>
+        <p data-reveal style="margin: 0; max-width: 40rem; text-wrap: pretty;">And a long list of private businesses that needed their copy to sound like them instead of like everyone else.</p>
+      </section>
+
+      <section aria-labelledby="how-title" style="padding: 0 clamp(16px, 3vw, 40px) clamp(72px, 10vw, 160px); display: flex; flex-wrap: wrap; gap: 32px 64px; align-items: flex-start;">
+        <h2 id="how-title" data-reveal style="flex: 1 1 min(100%, 18rem); max-width: 26rem; margin: 0; font-weight: 500; font-size: clamp(28px, 3.6vw, 52px); line-height: 1.02; letter-spacing: -0.025em; text-wrap: balance;">A little about how this works.</h2>
+        <div data-reveal-group style="flex: 999 1 min(100%, 30rem); max-width: 40rem;">
+          <p style="margin: 0 0 1em; text-wrap: pretty;">I’m a one-person operation. That means you’re not getting an account manager, a project coordinator, and a writer you’ve never met. You’re getting me, from the first email through the final draft.</p>
+          <p style="margin: 0 0 1.2em; text-wrap: pretty;">It also means I work the way most busy people actually want to work — over email, on your timeline, without a lot of meetings. You send me a clear brief, I respond evenings and weekends, and the writing shows up in your inbox when it’s ready. If you’ve ever wished a creative partner would just do the work and send it to you, this is everything you’ve been dreaming of.</p>
+          <a href="#/about" style="display: inline-block; font-size: 17px; font-weight: 500; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px;" style-hover="color: #0b7a3e;">More about me</a>
+        </div>
+      </section>
+
+      <section aria-labelledby="ai-title" style="padding: 0 clamp(16px, 3vw, 40px) clamp(72px, 10vw, 160px); display: flex; flex-wrap: wrap; gap: 32px 64px; align-items: flex-start;">
+        <h2 id="ai-title" data-reveal style="flex: 1 1 min(100%, 18rem); max-width: 26rem; margin: 0; font-weight: 500; font-size: clamp(28px, 3.6vw, 52px); line-height: 1.02; letter-spacing: -0.025em;">A quick word on AI.</h2>
+        <div data-reveal-group style="flex: 999 1 min(100%, 30rem); max-width: 40rem;">
+          <p style="margin: 0 0 1em; text-wrap: pretty;">Yes, AI can write copy. It can produce competent, professional, completely indistinguishable-from-everyone-else’s copy in about thirty seconds. If that’s what you’re after, you genuinely don’t need me — and I’m not being sarcastic. If your goal is just to get some words on your page or send out an email with some links, AI can check that box for you.</p>
+          <p style="margin: 0; text-wrap: pretty;">But if you want writing that sounds like your business has a personality worth paying attention to, well, that’s a different thing entirely. And that’s what I’m passionate about.</p>
+        </div>
+      </section>
+
+      <section aria-labelledby="close-title" style="padding: 0 clamp(16px, 3vw, 40px) clamp(72px, 10vw, 160px);">
+        <h2 id="close-title" data-reveal style="margin: 0 0 40px; font-weight: 500; font-size: clamp(36px, 6.4vw, 104px); line-height: 0.96; letter-spacing: -0.035em; max-width: 16ch; text-wrap: balance;">If you’ve read this far, you’re probably the right kind of person to work with.</h2>
+        <div style="display: flex; flex-wrap: wrap; gap: 40px 64px; align-items: flex-start;">
+          <div data-reveal-group style="flex: 999 1 min(100%, 30rem); max-width: 40rem;">
+            <p style="margin: 0 0 1em; text-wrap: pretty;">Let’s start with an email. Tell me about your business, what you need written, and roughly when you need it. I’ll get back within a day or two with honest thoughts on whether I’m a good fit, plus a ballpark on cost and timeline.</p>
+            <p style="margin: 0 0 1em; text-wrap: pretty;">If we’re moving forward, the next step is a real conversation. Not a sales call. Not a “let’s hop on a Zoom for fifteen minutes” that turns into ninety minutes. An actual conversation where I get to hear how you talk about your business, so I can write in a voice that sounds like yours — not a copywriter’s version of yours.</p>
+            <p style="margin: 0; font-weight: 500; text-wrap: pretty;">That conversation is where the writing actually starts.</p>
+          </div>
+          <div data-reveal style="flex: 1 1 min(100%, 16rem); display: grid; gap: 14px; align-content: start; font-size: clamp(18px, 1.6vw, 24px); font-weight: 500;">
+            <a href="mailto:mike.billeter@gmail.com?subject=%5BWebsite%20Inquiry%5D" style="text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 6px; overflow-wrap: anywhere;" style-hover="color: #0b7a3e;">mike.billeter@gmail.com</a>
+            <a href="#/contact" style="text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 6px;" style-hover="color: #0b7a3e;">Or use the contact form</a>
+          </div>
+        </div>
+      </section>
+    </div>
+    </sc-if>
+
+    <!-- ═══════════════ SERVICES ═══════════════ -->
+    <sc-if value="{{ isServices }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Services">
+      <section aria-labelledby="svc-title" style="padding: clamp(40px, 8vw, 128px) clamp(16px, 3vw, 40px) clamp(40px, 6vw, 96px);">
+        <h1 id="svc-title" style="margin: 0 0 40px; font-weight: 500; font-size: clamp(38px, 7.4vw, 120px); line-height: 1.04; letter-spacing: -0.035em; max-width: 14ch; text-wrap: balance;">
+          <span style="display: block; overflow: hidden; padding-bottom: 0.08em; margin-bottom: -0.08em;"><span data-hero-line="1" style="display: block;">What I do, what it costs,</span></span>
+          <span style="display: block; overflow: hidden; padding-bottom: 0.08em; margin-bottom: -0.08em;"><span data-hero-line="2" style="display: block;">and who each thing</span></span>
+          <span style="display: block; overflow: hidden; padding-bottom: 0.08em; margin-bottom: -0.08em;"><span data-hero-line="3" style="display: block;">is actually for.</span></span>
+        </h1>
+        <div data-reveal-group style="max-width: 40rem; margin-left: auto;">
+          <p style="margin: 0 0 1em; text-wrap: pretty;">Here’s what I do, what it costs, and who each thing is actually for. Prices are listed because I’d rather you self-select than spend a chunk of your life on a “let’s get on a call to discuss pricing” that goes nowhere.</p>
+          <p style="margin: 0; text-wrap: pretty;">If you don’t see what you’re looking for, just send me an email and ask. The list below covers maybe 90% of what people hire me for. The other 10% comes up in conversation.</p>
+        </div>
+      </section>
+
+      <nav aria-label="Services on this page" style="padding: 0 clamp(16px, 3vw, 40px) clamp(72px, 10vw, 160px);">
+        <ol data-reveal-group style="list-style: none; margin: 0; padding: 0; border-top: 1px solid #0a0a0a;">
+          <li style="border-bottom: 1px solid #0a0a0a;"><a href="#/services/website-copy" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 24px; align-items: baseline; padding: 16px 0; text-decoration: none;" style-hover="color: #0b7a3e;"><span style="font-weight: 500; font-size: clamp(22px, 2.6vw, 36px); letter-spacing: -0.02em;">Website Copy</span><span style="font-variant-numeric: tabular-nums;">from $900</span></a></li>
+          <li style="border-bottom: 1px solid #0a0a0a;"><a href="#/services/email-campaigns" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 24px; align-items: baseline; padding: 16px 0; text-decoration: none;" style-hover="color: #0b7a3e;"><span style="font-weight: 500; font-size: clamp(22px, 2.6vw, 36px); letter-spacing: -0.02em;">Email Campaigns</span><span style="font-variant-numeric: tabular-nums;">from $650</span></a></li>
+          <li style="border-bottom: 1px solid #0a0a0a;"><a href="#/services/editing" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 24px; align-items: baseline; padding: 16px 0; text-decoration: none;" style-hover="color: #0b7a3e;"><span style="font-weight: 500; font-size: clamp(22px, 2.6vw, 36px); letter-spacing: -0.02em;">Editing</span><span style="font-variant-numeric: tabular-nums;">$150/hour</span></a></li>
+          <li style="border-bottom: 1px solid #0a0a0a;"><a href="#/services/blog-posts" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 24px; align-items: baseline; padding: 16px 0; text-decoration: none;" style-hover="color: #0b7a3e;"><span style="font-weight: 500; font-size: clamp(22px, 2.6vw, 36px); letter-spacing: -0.02em;">Blog Posts &amp; Articles</span><span style="font-variant-numeric: tabular-nums;">from $300</span></a></li>
+          <li style="border-bottom: 1px solid #0a0a0a;"><a href="#/services/ghostwriting" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 24px; align-items: baseline; padding: 16px 0; text-decoration: none;" style-hover="color: #0b7a3e;"><span style="font-weight: 500; font-size: clamp(22px, 2.6vw, 36px); letter-spacing: -0.02em;">Ghostwriting</span><span style="font-variant-numeric: tabular-nums;">$150/hour</span></a></li>
+          <li style="border-bottom: 1px solid #0a0a0a;"><a href="#/services/retainers" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 24px; align-items: baseline; padding: 16px 0; text-decoration: none;" style-hover="color: #0b7a3e;"><span style="font-weight: 500; font-size: clamp(22px, 2.6vw, 36px); letter-spacing: -0.02em;">Ongoing Retainer</span><span style="font-variant-numeric: tabular-nums;">from $450/month</span></a></li>
+          <li style="border-bottom: 1px solid #0a0a0a;"><a href="#/services/what-i-dont-do" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 24px; align-items: baseline; padding: 16px 0; text-decoration: none;" style-hover="color: #0b7a3e;"><span style="font-weight: 500; font-size: clamp(22px, 2.6vw, 36px); letter-spacing: -0.02em;">What I don’t do</span><span>—</span></a></li>
+          <li style="border-bottom: 1px solid #0a0a0a;"><a href="#/services/practical-notes" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 24px; align-items: baseline; padding: 16px 0; text-decoration: none;" style-hover="color: #0b7a3e;"><span style="font-weight: 500; font-size: clamp(22px, 2.6vw, 36px); letter-spacing: -0.02em;">A few practical notes</span><span>—</span></a></li>
+        </ol>
+      </nav>
+
+      <section id="website-copy" aria-labelledby="wc-title" style="padding: 0 clamp(16px, 3vw, 40px) clamp(72px, 10vw, 160px); display: flex; flex-wrap: wrap; gap: 32px 64px; align-items: flex-start; scroll-margin-top: 80px;">
+        <div data-reveal style="flex: 1 1 min(100%, 18rem); max-width: 26rem;">
+          <h2 id="wc-title" style="margin: 0 0 12px; font-weight: 500; font-size: clamp(32px, 4.6vw, 72px); line-height: 0.98; letter-spacing: -0.03em;">Website Copy</h2>
+          <p style="margin: 0; font-size: clamp(20px, 2vw, 28px); font-variant-numeric: tabular-nums; color: #0b7a3e;">Starts at $900</p>
+        </div>
+        <div data-reveal-group style="flex: 999 1 min(100%, 30rem); max-width: 44rem;">
+          <p style="margin: 0 0 1em; text-wrap: pretty;">The thing most people hire me for. If your current website reads like every other website in your industry — or worse, like it was written by a committee that included a robot — this is the fix.</p>
+          <p style="margin: 0 0 1.6em; text-wrap: pretty;">Three packages depending on how much site you need written.</p>
+          <table style="width: 100%; border-collapse: collapse; font-size: 16px; margin: 0 0 1.6em; border-top: 1px solid #0a0a0a;">
+            <thead><tr><th scope="col" style="text-align: left; font-weight: 500; font-size: 14px; padding: 10px 12px 10px 0; border-bottom: 1px solid #0a0a0a;">Package</th><th scope="col" style="text-align: right; font-weight: 500; font-size: 14px; padding: 10px 0; border-bottom: 1px solid #0a0a0a;">Price</th></tr></thead>
+            <tbody>
+              <tr><td style="padding: 16px 16px 16px 0; border-bottom: 1px solid #0a0a0a; vertical-align: top;"><strong style="font-weight: 500; font-size: 22px; display: block; margin-bottom: 4px; letter-spacing: -0.01em;">Starter</strong><span style="display: block; line-height: 1.45; text-wrap: pretty;">Up to three primary pages (typically homepage, about, and services or contact). One discovery conversation. Two rounds of revisions. A good fit if you have a tight three-page site and need every page to pull its weight — solo operators, consultants, and small businesses often land here.</span></td><td style="padding: 16px 0; border-bottom: 1px solid #0a0a0a; text-align: right; vertical-align: top; font-size: 22px; font-variant-numeric: tabular-nums; white-space: nowrap;">$900</td></tr>
+              <tr><td style="padding: 16px 16px 16px 0; border-bottom: 1px solid #0a0a0a; vertical-align: top;"><strong style="font-weight: 500; font-size: 22px; display: block; margin-bottom: 4px; letter-spacing: -0.01em;">Standard</strong><span style="display: block; line-height: 1.45; text-wrap: pretty;">Up to five pages. Three primary plus two secondary (think: case studies, FAQ, a process or methodology page, a specific service page). Two rounds of revisions. A good fit if you have a fuller site that needs to sound like one consistent voice instead of a patchwork — established small and mid-size businesses often land here.</span></td><td style="padding: 16px 0; border-bottom: 1px solid #0a0a0a; text-align: right; vertical-align: top; font-size: 22px; font-variant-numeric: tabular-nums; white-space: nowrap;">$1,350</td></tr>
+              <tr><td style="padding: 16px 16px 16px 0; border-bottom: 1px solid #0a0a0a; vertical-align: top;"><strong style="font-weight: 500; font-size: 22px; display: block; margin-bottom: 4px; letter-spacing: -0.01em;">Full Site</strong><span style="display: block; line-height: 1.45; text-wrap: pretty;">Six or more pages, scoped after we talk. Two rounds of revisions per page. A good fit if you’re doing a real overhaul — new positioning, new structure, the whole thing reworked from the ground up. Businesses launching a rebrand or repositioning often land here.</span></td><td style="padding: 16px 0; border-bottom: 1px solid #0a0a0a; text-align: right; vertical-align: top; font-size: 22px; font-variant-numeric: tabular-nums; white-space: nowrap;">$1,800+</td></tr>
+            </tbody>
+          </table>
+          <p style="margin: 0; text-wrap: pretty;">All three packages include a real conversation up front, because that’s where I figure out what your voice actually sounds like. (See <a href="#/process">how this works</a>.)</p>
+        </div>
+      </section>
+
+      <section id="email-campaigns" aria-labelledby="ec-title" style="padding: 0 clamp(16px, 3vw, 40px) clamp(72px, 10vw, 160px); display: flex; flex-wrap: wrap; gap: 32px 64px; align-items: flex-start; scroll-margin-top: 80px;">
+        <div data-reveal style="flex: 1 1 min(100%, 18rem); max-width: 26rem;">
+          <h2 id="ec-title" style="margin: 0 0 12px; font-weight: 500; font-size: clamp(32px, 4.6vw, 72px); line-height: 0.98; letter-spacing: -0.03em;">Email Campaigns</h2>
+          <p style="margin: 0; font-size: clamp(20px, 2vw, 28px); font-variant-numeric: tabular-nums; color: #0b7a3e;">Starts at $650</p>
+        </div>
+        <div data-reveal-group style="flex: 999 1 min(100%, 30rem); max-width: 44rem;">
+          <p style="margin: 0 0 1.6em; text-wrap: pretty;">Sequences that get opened, get read, and don’t sound like they were written by a robot pretending to be a friendly human. Welcome sequences, launch sequences, nurture sequences, re-engagement sequences — anything that’s a connected set of emails with a goal at the end.</p>
+          <table style="width: 100%; border-collapse: collapse; font-size: 16px; margin: 0 0 1.6em; border-top: 1px solid #0a0a0a;">
+            <thead><tr><th scope="col" style="text-align: left; font-weight: 500; font-size: 14px; padding: 10px 12px 10px 0; border-bottom: 1px solid #0a0a0a;">Sequence length</th><th scope="col" style="text-align: right; font-weight: 500; font-size: 14px; padding: 10px 0; border-bottom: 1px solid #0a0a0a;">Price</th></tr></thead>
+            <tbody>
+              <tr><td style="padding: 14px 16px 14px 0; border-bottom: 1px solid #0a0a0a; font-weight: 500; font-size: 22px; letter-spacing: -0.01em;">Up to 3 emails</td><td style="padding: 14px 0; border-bottom: 1px solid #0a0a0a; text-align: right; font-size: 22px; font-variant-numeric: tabular-nums; white-space: nowrap;">$650</td></tr>
+              <tr><td style="padding: 14px 16px 14px 0; border-bottom: 1px solid #0a0a0a; font-weight: 500; font-size: 22px; letter-spacing: -0.01em;">4–5 emails</td><td style="padding: 14px 0; border-bottom: 1px solid #0a0a0a; text-align: right; font-size: 22px; font-variant-numeric: tabular-nums; white-space: nowrap;">$950</td></tr>
+              <tr><td style="padding: 14px 16px 14px 0; border-bottom: 1px solid #0a0a0a; font-weight: 500; font-size: 22px; letter-spacing: -0.01em;">6–7 emails</td><td style="padding: 14px 0; border-bottom: 1px solid #0a0a0a; text-align: right; font-size: 22px; font-variant-numeric: tabular-nums; white-space: nowrap;">$1,250</td></tr>
+              <tr><td style="padding: 14px 16px 14px 0; border-bottom: 1px solid #0a0a0a; font-weight: 500; font-size: 22px; letter-spacing: -0.01em;">8+ emails</td><td style="padding: 14px 0; border-bottom: 1px solid #0a0a0a; text-align: right; font-size: 16px; white-space: nowrap;">Scoped after we talk</td></tr>
+            </tbody>
+          </table>
+          <p style="margin: 0 0 1em; text-wrap: pretty;">Every email comes with subject line, preview text, body copy, and call-to-action copy. Delivered as a clean doc you (or whoever runs your email platform) can drop into Mailchimp, Klaviyo, ConvertKit, or whatever you use.</p>
+          <p style="margin: 0; text-wrap: pretty;">I write the copy. I don’t manage your email platform, set up automations, design templates, or guarantee open rates — those depend on a lot of factors beyond the writing. What I can promise is that the writing itself will be a meaningful upgrade over generic, AI-flavored marketing copy.</p>
+        </div>
+      </section>
+
+      <section id="editing" aria-labelledby="ed-title" style="padding: 0 clamp(16px, 3vw, 40px) clamp(72px, 10vw, 160px); display: flex; flex-wrap: wrap; gap: 32px 64px; align-items: flex-start; scroll-margin-top: 80px;">
+        <div data-reveal style="flex: 1 1 min(100%, 18rem); max-width: 26rem;">
+          <h2 id="ed-title" style="margin: 0 0 12px; font-weight: 500; font-size: clamp(32px, 4.6vw, 72px); line-height: 0.98; letter-spacing: -0.03em;">Editing</h2>
+          <p style="margin: 0; font-size: clamp(20px, 2vw, 28px); font-variant-numeric: tabular-nums; color: #0b7a3e;">$150/hour, two-hour minimum</p>
+        </div>
+        <div data-reveal-group style="flex: 999 1 min(100%, 30rem); max-width: 44rem;">
+          <p style="margin: 0 0 1em; text-wrap: pretty;">For businesses that already have copy they mostly like and want it sharper, tighter, and more distinctly theirs. This isn’t a discount version of writing — it’s a different service for a different situation. If you’ve written your own site and want it to land better, or you have copy from a previous writer that doesn’t quite fit anymore, editing is what you’re looking for.</p>
+          <p style="margin: 0; text-wrap: pretty;">I’ll review what you have, edit for voice, clarity, and impact, and return a marked-up version with changes and notes. Substantive editing — not just proofreading. If what you actually need is a full rewrite, I’ll tell you that upfront and we’ll talk about scoping it as a writing project instead.</p>
+        </div>
+      </section>
+
+      <section id="blog-posts" aria-labelledby="bp-title" style="padding: 0 clamp(16px, 3vw, 40px) clamp(72px, 10vw, 160px); display: flex; flex-wrap: wrap; gap: 32px 64px; align-items: flex-start; scroll-margin-top: 80px;">
+        <div data-reveal style="flex: 1 1 min(100%, 18rem); max-width: 26rem;">
+          <h2 id="bp-title" style="margin: 0 0 12px; font-weight: 500; font-size: clamp(32px, 4.6vw, 72px); line-height: 0.98; letter-spacing: -0.03em;">Blog Posts &amp; Articles</h2>
+          <p style="margin: 0; font-size: clamp(20px, 2vw, 28px); font-variant-numeric: tabular-nums; color: #0b7a3e;">Starts at $300 per post</p>
+        </div>
+        <div data-reveal-group style="flex: 999 1 min(100%, 30rem); max-width: 44rem;">
+          <p style="margin: 0 0 1em; text-wrap: pretty;">600–900 words of content that doesn’t read like generic content. Starts at $300 per post. Longer pieces (1,200+ words, in-depth articles, thought leadership) scoped after we talk.</p>
+          <p style="margin: 0; text-wrap: pretty;">Best fit: businesses that want to publish consistently but don’t have the time or inclination to write the posts themselves, and don’t want to fill their site with the same SEO-stuffed slop everyone else is publishing.</p>
+        </div>
+      </section>
+
+      <section id="ghostwriting" aria-labelledby="gw-title" style="padding: 0 clamp(16px, 3vw, 40px) clamp(72px, 10vw, 160px); display: flex; flex-wrap: wrap; gap: 32px 64px; align-items: flex-start; scroll-margin-top: 80px;">
+        <div data-reveal style="flex: 1 1 min(100%, 18rem); max-width: 26rem;">
+          <h2 id="gw-title" style="margin: 0 0 12px; font-weight: 500; font-size: clamp(32px, 4.6vw, 72px); line-height: 0.98; letter-spacing: -0.03em;">Ghostwriting</h2>
+          <p style="margin: 0; font-size: clamp(20px, 2vw, 28px); font-variant-numeric: tabular-nums; color: #0b7a3e;">$150/hour</p>
+        </div>
+        <div data-reveal-group style="flex: 999 1 min(100%, 30rem); max-width: 44rem;">
+          <p style="margin: 0 0 1em; text-wrap: pretty;">LinkedIn posts, longer-form essays, op-eds, executive thought leadership, whatever you need written in your voice rather than mine. Hourly at $150/hour.</p>
+          <p style="margin: 0 0 1em; text-wrap: pretty;">Here’s the thing about ghostwriting: a lot of writers can’t actually do it. Their voice is their voice, and whatever they write ends up sounding like them no matter who it’s supposedly for. That’s fine if you’re hiring a writer to sound like a writer. It’s a real problem if you’re paying someone to sound like you.</p>
+          <p style="margin: 0 0 1em; text-wrap: pretty;">What I do differently is adjust my style to match whoever I’m writing for — your voice, your audience’s expectations, the platform you’re publishing on. The piece should sound like you wrote it on a particularly sharp day, not like someone else wrote it for you.</p>
+          <p style="margin: 0; text-wrap: pretty;">I scope ghostwriting hourly because the time it takes depends on how much I’m starting with (bullet points, a voice memo, a half-written draft) and how much voice-capture the piece needs. If you’re considering ghostwriting as an ongoing need, the <a href="#/services/retainers">retainer option</a> is probably a better structure than billing piece by piece.</p>
+        </div>
+      </section>
+
+      <section id="retainers" aria-labelledby="rt-title" style="padding: 0 clamp(16px, 3vw, 40px) clamp(72px, 10vw, 160px); display: flex; flex-wrap: wrap; gap: 32px 64px; align-items: flex-start; scroll-margin-top: 80px;">
+        <div data-reveal style="flex: 1 1 min(100%, 18rem); max-width: 26rem;">
+          <h2 id="rt-title" style="margin: 0 0 12px; font-weight: 500; font-size: clamp(32px, 4.6vw, 72px); line-height: 0.98; letter-spacing: -0.03em;">Ongoing Retainer</h2>
+          <p style="margin: 0; font-size: clamp(20px, 2vw, 28px); font-variant-numeric: tabular-nums; color: #0b7a3e;">From $450/month</p>
+        </div>
+        <div data-reveal-group style="flex: 999 1 min(100%, 30rem); max-width: 44rem;">
+          <p style="margin: 0 0 1.6em; text-wrap: pretty;">For businesses that need writing on a regular basis and would rather not start from scratch every time. Once we’ve worked together once or twice and I know your voice, a retainer is the most efficient way to keep me on call without renegotiating every month.</p>
+          <table style="width: 100%; border-collapse: collapse; font-size: 16px; margin: 0 0 1.6em; border-top: 1px solid #0a0a0a;">
+            <thead><tr><th scope="col" style="text-align: left; font-weight: 500; font-size: 14px; padding: 10px 12px 10px 0; border-bottom: 1px solid #0a0a0a;">Hours per month</th><th scope="col" style="text-align: right; font-weight: 500; font-size: 14px; padding: 10px 0; border-bottom: 1px solid #0a0a0a;">Monthly</th></tr></thead>
+            <tbody>
+              <tr><td style="padding: 16px 16px 16px 0; border-bottom: 1px solid #0a0a0a; vertical-align: top;"><strong style="font-weight: 500; font-size: 22px; display: block; margin-bottom: 4px;">3 hours</strong><span style="display: block; line-height: 1.45;">Light touch. A few small things per month — a landing page tweak, an email or two, a short blog post.</span></td><td style="padding: 16px 0; border-bottom: 1px solid #0a0a0a; text-align: right; vertical-align: top; font-size: 22px; font-variant-numeric: tabular-nums; white-space: nowrap;">$450</td></tr>
+              <tr><td style="padding: 16px 16px 16px 0; border-bottom: 1px solid #0a0a0a; vertical-align: top;"><strong style="font-weight: 500; font-size: 22px; display: block; margin-bottom: 4px;">5 hours</strong><span style="display: block; line-height: 1.45;">Moderate. One bigger project plus some small stuff.</span></td><td style="padding: 16px 0; border-bottom: 1px solid #0a0a0a; text-align: right; vertical-align: top; font-size: 22px; font-variant-numeric: tabular-nums; white-space: nowrap;">$700</td></tr>
+              <tr><td style="padding: 16px 16px 16px 0; border-bottom: 1px solid #0a0a0a; vertical-align: top;"><strong style="font-weight: 500; font-size: 22px; display: block; margin-bottom: 4px;">8 hours</strong><span style="display: block; line-height: 1.45;">Heavy. Significant ongoing writing partnership. Best for businesses with regular content needs or active marketing programs.</span></td><td style="padding: 16px 0; border-bottom: 1px solid #0a0a0a; text-align: right; vertical-align: top; font-size: 22px; font-variant-numeric: tabular-nums; white-space: nowrap;">$1,050</td></tr>
+              <tr><td style="padding: 16px 16px 16px 0; border-bottom: 1px solid #0a0a0a; vertical-align: top;"><strong style="font-weight: 500; font-size: 22px; display: block; margin-bottom: 4px;">Beyond 8 hours</strong><span style="display: block; line-height: 1.45;">Larger arrangements are possible but scoped privately, because they depend on what else is on my plate at the time.</span></td><td style="padding: 16px 0; border-bottom: 1px solid #0a0a0a; text-align: right; vertical-align: top; font-size: 16px; white-space: nowrap;">Let’s talk</td></tr>
+            </tbody>
+          </table>
+          <p style="margin: 0 0 1em; text-wrap: pretty;">Retainers are billed at the start of each month. Unused hours don’t roll over (this protects both of us — you don’t accumulate a debt I can’t actually deliver against, and I don’t end up owing a client 20 hours in month six). Either of us can end the arrangement with 30 days notice.</p>
+          <p style="margin: 0; text-wrap: pretty;">A note on retainers: I take on a small number at a time. The whole point of a retainer is that you get someone who actually knows your business and can deliver consistently, and the math breaks down if I’m trying to maintain that kind of relationship with too many clients at once. So if you reach out and I’m at capacity, I’ll tell you honestly. If I’m available, we’ll talk.</p>
+        </div>
+      </section>
+
+      <section id="what-i-dont-do" aria-labelledby="dont-title" style="padding: 0 clamp(16px, 3vw, 40px) clamp(72px, 10vw, 160px); display: flex; flex-wrap: wrap; gap: 32px 64px; align-items: flex-start; scroll-margin-top: 80px;">
+        <div data-reveal style="flex: 1 1 min(100%, 18rem); max-width: 26rem;">
+          <h2 id="dont-title" style="margin: 0 0 12px; font-weight: 500; font-size: clamp(32px, 4.6vw, 72px); line-height: 0.98; letter-spacing: -0.03em;">What I don’t do</h2>
+        </div>
+        <div data-reveal-group style="flex: 999 1 min(100%, 30rem); max-width: 44rem;">
+          <p style="margin: 0 0 1.6em; text-wrap: pretty;">The flip side of being clear about services is being clear about non-services. A short list, so we don’t end up two emails into a conversation that wasn’t going to work anyway.</p>
+          <dl style="margin: 0; display: grid; gap: 24px;">
+            <div><dt style="font-weight: 500; font-size: 22px; line-height: 1.2; margin-bottom: 6px; letter-spacing: -0.01em;"><s style="text-decoration-color: #0b7a3e; text-decoration-thickness: 2px;">Social media management.</s></dt><dd style="margin: 0; text-wrap: pretty;">I don’t run accounts, schedule posts, or write recurring social content. If you need a single post written occasionally, that can fit under blog or ghostwriting work. But ongoing social management is a different job and you want someone whose actual specialty is that.</dd></div>
+            <div><dt style="font-weight: 500; font-size: 22px; line-height: 1.2; margin-bottom: 6px; letter-spacing: -0.01em;"><s style="text-decoration-color: #0b7a3e; text-decoration-thickness: 2px;">Email platform setup and management.</s></dt><dd style="margin: 0; text-wrap: pretty;">I write the emails. I don’t log into your Mailchimp, set up your automations, manage your list, or troubleshoot deliverability. If you need that side of things handled, I can recommend people who do it well.</dd></div>
+            <div><dt style="font-weight: 500; font-size: 22px; line-height: 1.2; margin-bottom: 6px; letter-spacing: -0.01em;"><s style="text-decoration-color: #0b7a3e; text-decoration-thickness: 2px;">Speed-priority work where voice doesn’t matter.</s></dt><dd style="margin: 0; text-wrap: pretty;">If you need 500 words by tomorrow and you don’t really care how it sounds, AI will do that faster than I will, for free. I write more deliberately because the writing is the point. If the writing isn’t the point, I’m not the right hire.</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <section id="practical-notes" aria-labelledby="notes-title" style="padding: 0 clamp(16px, 3vw, 40px) clamp(72px, 10vw, 160px); display: flex; flex-wrap: wrap; gap: 32px 64px; align-items: flex-start; scroll-margin-top: 80px;">
+        <div data-reveal style="flex: 1 1 min(100%, 18rem); max-width: 26rem;">
+          <h2 id="notes-title" style="margin: 0; font-weight: 500; font-size: clamp(32px, 4.6vw, 72px); line-height: 0.98; letter-spacing: -0.03em;">A few practical notes</h2>
+        </div>
+        <dl data-reveal-group style="flex: 999 1 min(100%, 30rem); max-width: 44rem; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 28px 40px;">
+          <div style="border-top: 1px solid #0a0a0a; padding-top: 14px;"><dt style="font-weight: 500; font-size: 22px; margin-bottom: 8px; letter-spacing: -0.01em;">Deposits</dt><dd style="margin: 0; font-size: 16px; line-height: 1.5; text-wrap: pretty;">Projects over $300 require a 50% deposit to start. The remaining 50% is invoiced on final delivery. Smaller projects (one blog post, an editing engagement under two hours) are billed on completion.</dd></div>
+          <div style="border-top: 1px solid #0a0a0a; padding-top: 14px;"><dt style="font-weight: 500; font-size: 22px; margin-bottom: 8px; letter-spacing: -0.01em;">Retainers</dt><dd style="margin: 0; font-size: 16px; line-height: 1.5; text-wrap: pretty;">Billed at the start of each month. Unused hours don’t roll over. Either of us can end the arrangement with 30 days notice.</dd></div>
+          <div style="border-top: 1px solid #0a0a0a; padding-top: 14px;"><dt style="font-weight: 500; font-size: 22px; margin-bottom: 8px; letter-spacing: -0.01em;">Revisions</dt><dd style="margin: 0; font-size: 16px; line-height: 1.5; text-wrap: pretty;">Two rounds included on Website Copy projects, one round on most other projects, additional rounds at $150/hour. A “round” means one consolidated set of feedback, not a series of one-off requests.</dd></div>
+          <div style="border-top: 1px solid #0a0a0a; padding-top: 14px;"><dt style="font-weight: 500; font-size: 22px; margin-bottom: 8px; letter-spacing: -0.01em;">Paused or canceled projects</dt><dd style="margin: 0; font-size: 16px; line-height: 1.5; text-wrap: pretty;">If a project gets paused or canceled after I’ve started, the deposit covers the work done up to that point. Anything beyond that, we handle case by case.</dd></div>
+          <div style="border-top: 1px solid #0a0a0a; padding-top: 14px;"><dt style="font-weight: 500; font-size: 22px; margin-bottom: 8px; letter-spacing: -0.01em;">Ownership</dt><dd style="margin: 0; font-size: 16px; line-height: 1.5; text-wrap: pretty;">Once final payment is received, the copy is yours. You can use it, modify it, republish it, ignore it, whatever you want. I don’t retain any ownership or licensing rights to client work.</dd></div>
+        </dl>
+      </section>
+
+      <section aria-labelledby="svc-close" style="padding: 0 clamp(16px, 3vw, 40px) clamp(72px, 10vw, 160px);">
+        <h2 id="svc-close" data-reveal style="margin: 0 0 32px; font-weight: 500; font-size: clamp(36px, 6.4vw, 104px); line-height: 0.96; letter-spacing: -0.035em;">Ready to start?</h2>
+        <div style="display: flex; flex-wrap: wrap; gap: 40px 64px; align-items: flex-start;">
+          <div data-reveal-group style="flex: 999 1 min(100%, 30rem); max-width: 40rem;">
+            <p style="margin: 0 0 1em; text-wrap: pretty;">The first step is an email. Tell me what you need written, what your business does, and roughly when you need it. I’ll come back within a day or two with honest thoughts on whether I’m a good fit, plus a ballpark on cost and timeline.</p>
+            <p style="margin: 0; text-wrap: pretty;">If we’re moving forward, the next step is the conversation — and that conversation is where the writing actually starts.</p>
+          </div>
+          <div data-reveal style="flex: 1 1 min(100%, 16rem); display: grid; gap: 14px; align-content: start; font-size: clamp(18px, 1.6vw, 24px); font-weight: 500;">
+            <a href="mailto:mike.billeter@gmail.com?subject=%5BWebsite%20Inquiry%5D" style="text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 6px; overflow-wrap: anywhere;" style-hover="color: #0b7a3e;">mike.billeter@gmail.com</a>
+            <a href="#/contact" style="text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 6px;" style-hover="color: #0b7a3e;">Or use the contact form</a>
+          </div>
+        </div>
+      </section>
+    </div>
+    </sc-if>
+
+    <!-- ═══════════════ PROCESS ═══════════════ -->
+    <sc-if value="{{ isProcess }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Process">
+      <section aria-labelledby="proc-title" style="padding: clamp(40px, 8vw, 128px) clamp(16px, 3vw, 40px) clamp(40px, 6vw, 96px);">
+        <h1 id="proc-title" style="margin: 0 0 40px; font-weight: 500; font-size: clamp(38px, 7.4vw, 120px); line-height: 1.04; letter-spacing: -0.035em; max-width: 14ch; text-wrap: balance;">
+          <span style="display: block; overflow: hidden; padding-bottom: 0.08em; margin-bottom: -0.08em;"><span data-hero-line="1" style="display: block;">A copywriting project</span></span>
+          <span style="display: block; overflow: hidden; padding-bottom: 0.08em; margin-bottom: -0.08em;"><span data-hero-line="2" style="display: block;">has a few moving parts.</span></span>
+        </h1>
+        <p data-reveal style="margin: 0; max-width: 36rem; margin-left: auto; text-wrap: pretty;">Here’s the order they happen in, so you know what you’re signing up for before you sign up.</p>
+      </section>
+
+      <div style="position: relative; padding: 0 clamp(16px, 3vw, 40px) clamp(72px, 10vw, 160px);">
+        <div aria-hidden="true" style="position: absolute; top: 0; bottom: clamp(72px, 10vw, 160px); left: clamp(16px, 3vw, 40px); width: 1px; background: #e6e6e6;"></div>
+        <div aria-hidden="true" data-progress-line style="position: absolute; top: 0; bottom: clamp(72px, 10vw, 160px); left: clamp(16px, 3vw, 40px); width: 1px; background: #0b7a3e; transform-origin: top; transform: scaleY(0);"></div>
+        <ol style="list-style: none; margin: 0; padding: 0 0 0 clamp(20px, 3vw, 48px);">
+          <li data-step style="display: flex; flex-wrap: wrap; gap: 12px 48px; padding: clamp(28px, 4vw, 56px) 0; border-top: 1px solid #0a0a0a;">
+            <div data-step-num style="flex: 0 0 clamp(80px, 12vw, 200px); font-weight: 500; font-size: clamp(64px, 11vw, 190px); line-height: 0.85; letter-spacing: -0.05em; font-variant-numeric: tabular-nums; color: #0b7a3e;" aria-hidden="true">01</div>
+            <div data-reveal-group style="flex: 999 1 min(100%, 28rem); max-width: 40rem;">
+              <h2 style="margin: 0 0 14px; font-weight: 500; font-size: clamp(24px, 2.8vw, 40px); line-height: 1.05; letter-spacing: -0.02em;"><span style="position: absolute; left: -9999px;">Step 1. </span>You send the first email.</h2>
+              <p style="margin: 0; text-wrap: pretty;">Tell me what you need written, what your business does, and roughly when you need it. I’ll come back within a day or two with honest thoughts on whether I’m a good fit, a real ballpark on cost and timeline, and any questions I need answered before quoting more precisely.</p>
+            </div>
+          </li>
+          <li data-step style="display: flex; flex-wrap: wrap; gap: 12px 48px; padding: clamp(28px, 4vw, 56px) 0; border-top: 1px solid #0a0a0a;">
+            <div data-step-num style="flex: 0 0 clamp(80px, 12vw, 200px); font-weight: 500; font-size: clamp(64px, 11vw, 190px); line-height: 0.85; letter-spacing: -0.05em; font-variant-numeric: tabular-nums; color: #0b7a3e;" aria-hidden="true">02</div>
+            <div data-reveal-group style="flex: 999 1 min(100%, 28rem); max-width: 40rem;">
+              <h2 style="margin: 0 0 14px; font-weight: 500; font-size: clamp(24px, 2.8vw, 40px); line-height: 1.05; letter-spacing: -0.02em;"><span style="position: absolute; left: -9999px;">Step 2. </span>We have a real conversation.</h2>
+              <p style="margin: 0 0 1em; text-wrap: pretty;">Usually a 45–60 minute call. This is where I get to hear how you actually talk about your business — the way you’d describe it to a friend, not the way it shows up in the brochure your administrative assistant put together in 2009.</p>
+              <p style="margin: 0; text-wrap: pretty;">It’s also where we get into the specifics: who you’re trying to reach, what you want them to do, what’s worked and what hasn’t, anything you’ve tried before that fell flat. This conversation is the foundation of everything I write for you, so we don’t skip it.</p>
+            </div>
+          </li>
+          <li data-step style="display: flex; flex-wrap: wrap; gap: 12px 48px; padding: clamp(28px, 4vw, 56px) 0; border-top: 1px solid #0a0a0a;">
+            <div data-step-num style="flex: 0 0 clamp(80px, 12vw, 200px); font-weight: 500; font-size: clamp(64px, 11vw, 190px); line-height: 0.85; letter-spacing: -0.05em; font-variant-numeric: tabular-nums; color: #0b7a3e;" aria-hidden="true">03</div>
+            <div data-reveal-group style="flex: 999 1 min(100%, 28rem); max-width: 40rem;">
+              <h2 style="margin: 0 0 14px; font-weight: 500; font-size: clamp(24px, 2.8vw, 40px); line-height: 1.05; letter-spacing: -0.02em;"><span style="position: absolute; left: -9999px;">Step 3. </span>I send a project agreement and an invoice for the deposit.</h2>
+              <p style="margin: 0; text-wrap: pretty;">Once we’ve agreed on scope, I send a short written agreement covering what’s being delivered, when, and at what cost. Half the project cost is due to start — that’s how I know we’re really moving forward. (Retainers work differently; those are billed at the start of each month.)</p>
+            </div>
+          </li>
+          <li data-step style="display: flex; flex-wrap: wrap; gap: 12px 48px; padding: clamp(28px, 4vw, 56px) 0; border-top: 1px solid #0a0a0a;">
+            <div data-step-num style="flex: 0 0 clamp(80px, 12vw, 200px); font-weight: 500; font-size: clamp(64px, 11vw, 190px); line-height: 0.85; letter-spacing: -0.05em; font-variant-numeric: tabular-nums; color: #0b7a3e;" aria-hidden="true">04</div>
+            <div data-reveal-group style="flex: 999 1 min(100%, 28rem); max-width: 40rem;">
+              <h2 style="margin: 0 0 14px; font-weight: 500; font-size: clamp(24px, 2.8vw, 40px); line-height: 1.05; letter-spacing: -0.02em;"><span style="position: absolute; left: -9999px;">Step 4. </span>I write the first draft.</h2>
+              <p style="margin: 0; text-wrap: pretty;">Depending on the project, this takes anywhere from a few days to a few weeks. You’ll know the timeline before we start. I work evenings and weekends, so you won’t hear from me daily — but I’ll send a check-in if anything comes up that I need your input on.</p>
+            </div>
+          </li>
+          <li data-step style="display: flex; flex-wrap: wrap; gap: 12px 48px; padding: clamp(28px, 4vw, 56px) 0; border-top: 1px solid #0a0a0a;">
+            <div data-step-num style="flex: 0 0 clamp(80px, 12vw, 200px); font-weight: 500; font-size: clamp(64px, 11vw, 190px); line-height: 0.85; letter-spacing: -0.05em; font-variant-numeric: tabular-nums; color: #0b7a3e;" aria-hidden="true">05</div>
+            <div data-reveal-group style="flex: 999 1 min(100%, 28rem); max-width: 40rem;">
+              <h2 style="margin: 0 0 14px; font-weight: 500; font-size: clamp(24px, 2.8vw, 40px); line-height: 1.05; letter-spacing: -0.02em;"><span style="position: absolute; left: -9999px;">Step 5. </span>You review and send back consolidated feedback.</h2>
+              <p style="margin: 0; text-wrap: pretty;">One round of edits means one consolidated set of notes — not a string of one-off requests over two weeks. I’ll deliver a revised draft based on your feedback, and if you have more changes after that, we go through one more round.</p>
+            </div>
+          </li>
+          <li data-step style="display: flex; flex-wrap: wrap; gap: 12px 48px; padding: clamp(28px, 4vw, 56px) 0; border-top: 1px solid #0a0a0a; border-bottom: 1px solid #0a0a0a;">
+            <div data-step-num style="flex: 0 0 clamp(80px, 12vw, 200px); font-weight: 500; font-size: clamp(64px, 11vw, 190px); line-height: 0.85; letter-spacing: -0.05em; font-variant-numeric: tabular-nums; color: #0b7a3e;" aria-hidden="true">06</div>
+            <div data-reveal-group style="flex: 999 1 min(100%, 28rem); max-width: 40rem;">
+              <h2 style="margin: 0 0 14px; font-weight: 500; font-size: clamp(24px, 2.8vw, 40px); line-height: 1.05; letter-spacing: -0.02em;"><span style="position: absolute; left: -9999px;">Step 6. </span>Final delivery and final invoice.</h2>
+              <p style="margin: 0; text-wrap: pretty;">Once the copy is approved, I deliver it in a clean format you can use (usually Google Docs, but I can deliver in whatever format fits your workflow). The remaining 50% of the project cost is invoiced at this point. Once it’s paid, the copy is yours — full ownership, no further obligations to me.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <section aria-labelledby="proc-close" style="padding: 0 clamp(16px, 3vw, 40px) clamp(72px, 10vw, 160px);">
+        <h2 id="proc-close" data-reveal style="margin: 0 0 32px; font-weight: 500; font-size: clamp(36px, 6.4vw, 104px); line-height: 0.96; letter-spacing: -0.035em;">Ready to start?</h2>
+        <div style="display: flex; flex-wrap: wrap; gap: 40px 64px; align-items: flex-start;">
+          <div data-reveal-group style="flex: 999 1 min(100%, 30rem); max-width: 40rem;">
+            <p style="margin: 0 0 1em; text-wrap: pretty;">The first step is an email. Tell me what you need written, what your business does, and roughly when you need it.</p>
+            <p style="margin: 0; text-wrap: pretty;">Terms, deposits, and the revision policy are spelled out in the <a href="#/services/practical-notes">practical notes</a>.</p>
+          </div>
+          <div data-reveal style="flex: 1 1 min(100%, 16rem); display: grid; gap: 14px; align-content: start; font-size: clamp(18px, 1.6vw, 24px); font-weight: 500;">
+            <a href="mailto:mike.billeter@gmail.com?subject=%5BWebsite%20Inquiry%5D" style="text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 6px; overflow-wrap: anywhere;" style-hover="color: #0b7a3e;">mike.billeter@gmail.com</a>
+            <a href="#/contact" style="text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 6px;" style-hover="color: #0b7a3e;">Or use the contact form</a>
+          </div>
+        </div>
+      </section>
+    </div>
+    </sc-if>
+
+    <!-- ═══════════════ ABOUT ═══════════════ -->
+    <sc-if value="{{ isAbout }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="About">
+      <section aria-labelledby="about-title" style="padding: clamp(40px, 8vw, 128px) clamp(16px, 3vw, 40px) clamp(40px, 6vw, 96px);">
+        <h1 id="about-title" style="margin: 0 0 40px; font-weight: 500; font-size: clamp(38px, 7.4vw, 120px); line-height: 1.04; letter-spacing: -0.035em;">
+          <span style="display: block; overflow: hidden; padding-bottom: 0.08em; margin-bottom: -0.08em;"><span data-hero-line="1" style="display: block;">About me, briefly.</span></span>
+        </h1>
+        <div data-reveal-group style="max-width: 44rem; margin-left: auto;">
+          <p style="margin: 0 0 1em; font-size: clamp(22px, 2.4vw, 34px); line-height: 1.25; letter-spacing: -0.015em; text-wrap: pretty;">From 2012 to 2013, my wife and I walked across the United States. San Francisco to Delaware, on foot, with packs on our backs. It took fourteen months and somewhere around three thousand miles, depending on how you count.</p>
+          <p style="margin: 0; text-wrap: pretty;">I bring it up because most About pages start with a job title or a credential, and I think it’s more useful to tell you something that’s actually true about how I work. I’m someone who finishes things. Long things, slow things, things that turn out to be harder than they looked at the start. That trait has shaped every project I’ve taken on since.</p>
+        </div>
+      </section>
+
+      <figure style="margin: 0 0 clamp(72px, 10vw, 160px); padding: 0 clamp(16px, 3vw, 40px);">
+        <div style="overflow: hidden; aspect-ratio: 4 / 5; max-height: 90vh; max-width: 900px; background: #f2f2f2;">
+          <img data-parallax src="assets/mike-1000.jpg" srcset="assets/mike-600.jpg 600w, assets/mike-1000.jpg 1000w, assets/mike-1600.jpg 1600w" sizes="(max-width: 940px) 100vw, 900px" width="1734" height="2048" alt="Portrait of Mike Billeter: reddish-blond hair and beard, rectangular glasses, a broad smile, and a blue and white plaid western shirt." style="display: block; width: 100%; height: 140%; margin-top: -20%; object-fit: cover; object-position: 50% 30%; filter: grayscale(1); transition: filter .6s ease;" style-hover="filter: grayscale(0);">
+        </div>
+        <figcaption style="font-size: 14px; margin: 12px 0 0; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 24px; max-width: 900px;"><span>Mike Billeter</span><span>Sioux Falls, South Dakota</span></figcaption>
+      </figure>
+
+      <section aria-labelledby="work-title" style="padding: 0 clamp(16px, 3vw, 40px) clamp(72px, 10vw, 160px); display: flex; flex-wrap: wrap; gap: 32px 64px; align-items: flex-start;">
+        <h2 id="work-title" data-reveal style="flex: 1 1 min(100%, 18rem); max-width: 26rem; margin: 0; font-weight: 500; font-size: clamp(28px, 3.6vw, 52px); line-height: 1.02; letter-spacing: -0.025em;">The work</h2>
+        <div data-reveal-group style="flex: 999 1 min(100%, 30rem); max-width: 40rem;">
+          <p style="margin: 0 0 1em; text-wrap: pretty;">I’ve been writing professionally for almost twenty years. National food brands (Otis Spunkmeyer, Lamb Weston, Borden, Kerry Beverages). Private banking (Loft Advisors, the private wealth division of First Dakota National Bank). Higher education (Dordt University). National non-profits (Good Samaritan Society). A long stretch as a creative director at a church, leading a team of five. Plus plenty of hired-gun freelance work over the years for clients who came to me through word of mouth.</p>
+          <p style="margin: 0 0 1em; text-wrap: pretty;">The thread through all of it has been the same: figuring out what makes a business or organization sound like itself, and then writing in a way that makes that sound come through. Industries change. The job doesn’t.</p>
+          <p style="margin: 0; text-wrap: pretty;">These days I lead copywriting in-house at a global non-profit, in addition to freelance work in the evenings and on weekends. The full-time role keeps me sharp on strategic and brand-level work. The freelance practice is where I get to work directly with small and mid-size businesses — the kind of voice-driven projects that don’t fit inside a big organization’s needs.</p>
+        </div>
+      </section>
+
+      <section aria-labelledby="think-title" style="padding: 0 clamp(16px, 3vw, 40px) clamp(72px, 10vw, 160px); display: flex; flex-wrap: wrap; gap: 32px 64px; align-items: flex-start;">
+        <h2 id="think-title" data-reveal style="flex: 1 1 min(100%, 18rem); max-width: 26rem; margin: 0; font-weight: 500; font-size: clamp(28px, 3.6vw, 52px); line-height: 1.02; letter-spacing: -0.025em; text-wrap: balance;">How I think about the work</h2>
+        <div data-reveal-group style="flex: 999 1 min(100%, 30rem); max-width: 40rem;">
+          <p style="margin: 0 0 1em; text-wrap: pretty;">Most copy is written defensively. The writer plays it safe, picks the words least likely to offend, smooths out anything interesting, and the result is technically fine — and totally forgettable. AI accelerates the problem but didn’t create it. It’s been around longer than AI has.</p>
+          <p style="margin: 0 0 1em; text-wrap: pretty;">I write the other way. The job is to find what’s actually true about a business and put it on the page without sanding it down to nothing. Sometimes that means asking questions the client wasn’t expecting. Sometimes it means pushing back when the obvious draft is the boring one. Usually it means listening more than writing, especially at the start of a project.</p>
+          <p style="margin: 0; text-wrap: pretty;">This might sound like I take the craft too seriously. I don’t. The copy serves the business, not the other way around, and I’ll happily kill a line I love if a better one takes its place. But the writing should sound like somebody wrote it. That’s the whole point.</p>
+        </div>
+      </section>
+
+      <section aria-labelledby="rest-title" style="padding: 0 clamp(16px, 3vw, 40px) clamp(72px, 10vw, 160px); display: flex; flex-wrap: wrap; gap: 32px 64px; align-items: flex-start;">
+        <h2 id="rest-title" data-reveal style="flex: 1 1 min(100%, 18rem); max-width: 26rem; margin: 0; font-weight: 500; font-size: clamp(28px, 3.6vw, 52px); line-height: 1.02; letter-spacing: -0.025em;">The rest of it</h2>
+        <div data-reveal-group style="flex: 999 1 min(100%, 30rem); max-width: 40rem;">
+          <p style="margin: 0 0 1em; text-wrap: pretty;">A little context on the person you’d be working with, in case it matters.</p>
+          <p style="margin: 0 0 1em; text-wrap: pretty;">I live in Sioux Falls, South Dakota, with my wife, our four kids, and three dogs. (Yes, three dogs. I know.) We also have four kids in Heaven, which has shaped our family in ways I won’t try to explain in a paragraph on a website. If you’ve never experienced true chaos, you’re welcome at our house anytime before bedtime.</p>
+          <p style="margin: 0 0 1em; text-wrap: pretty;">My wife and I are deeply involved in our church, and raising our kids to know Jesus is probably the single most important thing I do with my life. Everything else — including the writing — sits somewhere below that.</p>
+          <p style="margin: 0; text-wrap: pretty;">I love living in Sioux Falls. I hate that it’s cold most of the year. Then again, the cold keeps the riff raff out. So…you win some, you lose some.</p>
+        </div>
+      </section>
+
+      <sc-if value="{{ showTestimonials }}" hint-placeholder-val="{{ false }}">
+      <section aria-labelledby="testi-title" style="padding: 0 clamp(16px, 3vw, 40px) clamp(72px, 10vw, 160px);">
+        <h2 id="testi-title" style="margin: 0 0 32px; font-weight: 500; font-size: clamp(28px, 3.6vw, 52px); line-height: 1.02; letter-spacing: -0.025em;">What people say</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 32px 48px;">
+          <sc-for list="{{ testimonials }}" as="t" hint-placeholder-count="0">
+            <blockquote style="margin: 0; border-top: 1px solid #0a0a0a; padding-top: 18px;">
+              <p style="font-size: 22px; line-height: 1.3; margin: 0 0 14px; letter-spacing: -0.01em; text-wrap: pretty;">“{{ t.quote }}”</p>
+              <footer style="font-size: 15px;">— {{ t.name }}<sc-if value="{{ t.title }}" hint-placeholder-val="{{ false }}">, {{ t.title }}</sc-if></footer>
+            </blockquote>
+          </sc-for>
+        </div>
+      </section>
+      </sc-if>
+
+      <section aria-labelledby="about-close" style="padding: 0 clamp(16px, 3vw, 40px) clamp(72px, 10vw, 160px);">
+        <h2 id="about-close" data-reveal style="margin: 0 0 32px; font-weight: 500; font-size: clamp(36px, 6.4vw, 104px); line-height: 0.96; letter-spacing: -0.035em;">If you’ve made it this far</h2>
+        <div style="display: flex; flex-wrap: wrap; gap: 40px 64px; align-items: flex-start;">
+          <p data-reveal style="flex: 999 1 min(100%, 30rem); max-width: 40rem; margin: 0; text-wrap: pretty;">You probably have a good sense by now of who you’d be working with. If the kind of writer described above is the kind of writer you’d want for your project, the next step is an email.</p>
+          <div data-reveal style="flex: 1 1 min(100%, 16rem); display: grid; gap: 14px; align-content: start; font-size: clamp(18px, 1.6vw, 24px); font-weight: 500;">
+            <a href="mailto:mike.billeter@gmail.com?subject=%5BWebsite%20Inquiry%5D" style="text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 6px; overflow-wrap: anywhere;" style-hover="color: #0b7a3e;">mike.billeter@gmail.com</a>
+            <a href="#/contact" style="text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 6px;" style-hover="color: #0b7a3e;">Or use the contact form</a>
+          </div>
+        </div>
+      </section>
+    </div>
+    </sc-if>
+
+    <!-- ═══════════════ CONTACT / FAQ ═══════════════ -->
+    <sc-if value="{{ isContact }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Contact">
+      <section aria-labelledby="contact-title" style="padding: clamp(40px, 8vw, 128px) clamp(16px, 3vw, 40px) clamp(72px, 10vw, 160px);">
+        <h1 id="contact-title" style="margin: 0 0 40px; font-weight: 500; font-size: clamp(38px, 7.4vw, 120px); line-height: 1.04; letter-spacing: -0.035em;">
+          <span style="display: block; overflow: hidden; padding-bottom: 0.08em; margin-bottom: -0.08em;"><span data-hero-line="1" style="display: block;">Contact</span></span>
+        </h1>
+        <div style="display: flex; flex-wrap: wrap; gap: 48px 64px; align-items: flex-start;">
+          <form ref="{{ formRef }}" onSubmit="{{ onSubmit }}" noValidate="{{ true }}" data-reveal style="flex: 999 1 min(100%, 26rem); max-width: 40rem; display: grid; gap: 28px;">
+            <p style="margin: 0; text-wrap: pretty;">The fastest way to start a project (or just get a question answered) is to send a note. I usually respond within a day or two.</p>
+            <div>
+              <label for="c-name" style="display: block; font-size: 15px; font-weight: 500; margin-bottom: 4px;">Name</label>
+              <input id="c-name" name="name" type="text" autoComplete="name" required="{{ true }}" aria-required="true" aria-invalid="{{ nameInvalid }}" aria-describedby="c-name-err" style="width: 100%; min-height: 52px; padding: 8px 0; font-size: 22px; background: transparent; border: 0; border-bottom: 1px solid #0a0a0a; border-radius: 0; color: #0a0a0a;" style-focus="border-bottom-color: #0b7a3e; outline: none; box-shadow: 0 1px 0 0 #0b7a3e;">
+              <sc-if value="{{ nameInvalid }}" hint-placeholder-val="{{ false }}"><p id="c-name-err" role="alert" style="margin: 8px 0 0; font-size: 15px; color: #0b7a3e;">{{ nameError }}</p></sc-if>
+            </div>
+            <div>
+              <label for="c-email" style="display: block; font-size: 15px; font-weight: 500; margin-bottom: 4px;">Email</label>
+              <input id="c-email" name="email" type="email" autoComplete="email" inputMode="email" required="{{ true }}" aria-required="true" aria-invalid="{{ emailInvalid }}" aria-describedby="c-email-err" style="width: 100%; min-height: 52px; padding: 8px 0; font-size: 22px; background: transparent; border: 0; border-bottom: 1px solid #0a0a0a; border-radius: 0; color: #0a0a0a;" style-focus="border-bottom-color: #0b7a3e; outline: none; box-shadow: 0 1px 0 0 #0b7a3e;">
+              <sc-if value="{{ emailInvalid }}" hint-placeholder-val="{{ false }}"><p id="c-email-err" role="alert" style="margin: 8px 0 0; font-size: 15px; color: #0b7a3e;">{{ emailError }}</p></sc-if>
+            </div>
+            <div>
+              <label for="c-message" style="display: block; font-size: 15px; font-weight: 500; margin-bottom: 4px;">Tell me about your project</label>
+              <textarea id="c-message" name="message" rows="6" required="{{ true }}" aria-required="true" aria-invalid="{{ messageInvalid }}" aria-describedby="c-message-err" style="width: 100%; min-height: 150px; padding: 8px 0; font-size: 22px; line-height: 1.35; background: transparent; border: 0; border-bottom: 1px solid #0a0a0a; border-radius: 0; color: #0a0a0a; resize: vertical;" style-focus="border-bottom-color: #0b7a3e; outline: none; box-shadow: 0 1px 0 0 #0b7a3e;"></textarea>
+              <sc-if value="{{ messageInvalid }}" hint-placeholder-val="{{ false }}"><p id="c-message-err" role="alert" style="margin: 8px 0 0; font-size: 15px; color: #0b7a3e;">{{ messageError }}</p></sc-if>
+            </div>
+            <div>
+              <label for="c-timeline" style="display: block; font-size: 15px; font-weight: 500; margin-bottom: 4px;">Timeline <span style="font-weight: 400;">(optional)</span></label>
+              <input id="c-timeline" name="timeline" type="text" autoComplete="off" style="width: 100%; min-height: 52px; padding: 8px 0; font-size: 22px; background: transparent; border: 0; border-bottom: 1px solid #0a0a0a; border-radius: 0; color: #0a0a0a;" style-focus="border-bottom-color: #0b7a3e; outline: none; box-shadow: 0 1px 0 0 #0b7a3e;">
+            </div>
+            <div aria-hidden="true" style="position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden;">
+              <label for="c-company">Company</label>
+              <input id="c-company" name="company" type="text" tabIndex="-1" autoComplete="off">
+            </div>
+            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px;">
+              <button type="submit" disabled="{{ isPending }}" style="font-size: 18px; font-weight: 500; padding: 14px 28px; min-height: 52px; color: #0a0a0a; border: 1px solid #0a0a0a; background: transparent; border-radius: 999px; cursor: pointer; transition: background .25s ease, color .25s ease;" style-hover="background: #0a0a0a; color: #fff;" style-active="background: #0b7a3e; border-color: #0b7a3e; color: #fff;">{{ submitLabel }}</button>
+              <span style="font-size: 14px;">Goes to mike.billeter@gmail.com.</span>
+            </div>
+            <div role="status" aria-live="polite" style="min-height: 1px;">
+              <sc-if value="{{ isSent }}" hint-placeholder-val="{{ false }}">
+                <div style="border-top: 1px solid #0a0a0a; padding-top: 18px;">
+                  <p style="font-size: 26px; font-weight: 500; line-height: 1.2; margin: 0 0 8px; letter-spacing: -0.02em;">Sent. Thanks.</p>
+                  <p style="margin: 0; text-wrap: pretty;">Your note is on its way to Mike’s inbox. Expect a reply within a day or two — evenings and weekends included.</p>
+                </div>
+              </sc-if>
+              <sc-if value="{{ isUnconfigured }}" hint-placeholder-val="{{ false }}">
+                <div style="border-top: 1px solid #0a0a0a; padding-top: 18px;">
+                  <p style="font-size: 26px; font-weight: 500; line-height: 1.2; margin: 0 0 8px; letter-spacing: -0.02em;">Nothing was sent yet.</p>
+                  <p style="margin: 0 0 12px; text-wrap: pretty;">Form delivery isn’t connected on this site, so your message hasn’t gone anywhere. This link opens your email app with everything you typed already filled in:</p>
+                  <a href="{{ mailtoHref }}" style="font-weight: 500; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px;" style-hover="color: #0b7a3e;">Send it by email instead</a>
+                </div>
+              </sc-if>
+              <sc-if value="{{ isError }}" hint-placeholder-val="{{ false }}">
+                <div style="border-top: 1px solid #0a0a0a; padding-top: 18px;">
+                  <p style="font-size: 26px; font-weight: 500; line-height: 1.2; margin: 0 0 8px; letter-spacing: -0.02em;">That didn’t go through.</p>
+                  <p style="margin: 0 0 12px; text-wrap: pretty;">Something failed on the way to the inbox. Your message is still in the form — try again in a moment, or use this link to send it by email:</p>
+                  <a href="{{ mailtoHref }}" style="font-weight: 500; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px;" style-hover="color: #0b7a3e;">Send it by email instead</a>
+                </div>
+              </sc-if>
+              <sc-if value="{{ isTooFast }}" hint-placeholder-val="{{ false }}">
+                <p style="margin: 0; font-size: 16px; color: #0b7a3e;">That was quick. Give it a second and press Send again.</p>
+              </sc-if>
+            </div>
+          </form>
+
+          <aside aria-labelledby="direct-title" data-reveal style="flex: 1 1 min(100%, 16rem); max-width: 22rem; border-top: 1px solid #0a0a0a; padding-top: 18px;">
+            <h2 id="direct-title" style="font-size: 15px; font-weight: 500; margin: 0 0 12px;">Prefer regular email?</h2>
+            <a href="mailto:mike.billeter@gmail.com?subject=%5BWebsite%20Inquiry%5D" style="display: inline-block; font-size: clamp(18px, 1.6vw, 24px); font-weight: 500; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 6px; margin-bottom: 18px; overflow-wrap: anywhere;" style-hover="color: #0b7a3e;">mike.billeter@gmail.com</a>
+            <p style="margin: 0; font-size: 16px; text-wrap: pretty;">If we’re moving forward, the next step is a real conversation — not a sales call. That conversation is where the writing actually starts.</p>
+          </aside>
+        </div>
+      </section>
+
+      <section aria-labelledby="faq-title" style="padding: 0 clamp(16px, 3vw, 40px) clamp(72px, 10vw, 160px); display: flex; flex-wrap: wrap; gap: 32px 64px; align-items: flex-start;">
+        <div data-reveal style="flex: 1 1 min(100%, 18rem); max-width: 26rem;">
+          <h2 id="faq-title" style="margin: 0 0 12px; font-weight: 500; font-size: clamp(28px, 3.6vw, 52px); line-height: 1.02; letter-spacing: -0.025em;">Frequently asked questions</h2>
+          <p style="margin: 0; font-size: 16px;">Before you write, here are some things people commonly ask.</p>
+        </div>
+        <div data-reveal-group style="flex: 999 1 min(100%, 30rem); max-width: 44rem; border-top: 1px solid #0a0a0a;">
+          <details style="border-bottom: 1px solid #0a0a0a;">
+            <summary style="list-style: none; display: flex; justify-content: space-between; gap: 16px; align-items: baseline; padding: 18px 0; cursor: pointer; font-weight: 500; font-size: clamp(19px, 1.8vw, 24px); line-height: 1.2; letter-spacing: -0.01em;" style-hover="color: #0b7a3e;">How long does a typical project take?<span aria-hidden="true" style="font-weight: 400; font-size: 26px; line-height: 1;">+</span></summary>
+            <div style="padding: 0 0 22px;">
+              <p style="margin: 0 0 14px;">It depends, but here are honest ranges for the most common projects:</p>
+              <dl style="margin: 0; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 24px; font-size: 16px; line-height: 1.45;">
+                <dt style="font-weight: 500;">Website Copy Starter (3 pages)</dt><dd style="margin: 0; text-align: right;">2–3 weeks from kickoff</dd>
+                <dt style="font-weight: 500;">Website Copy Standard (5 pages)</dt><dd style="margin: 0; text-align: right;">3–5 weeks</dd>
+                <dt style="font-weight: 500;">Website Copy Full Site (6+ pages)</dt><dd style="margin: 0; text-align: right;">5–6 weeks, scoped after we talk</dd>
+                <dt style="font-weight: 500;">Email Campaign</dt><dd style="margin: 0; text-align: right;">1–2 weeks for a short sequence, 2–4 weeks for a longer one</dd>
+                <dt style="font-weight: 500;">Blog Post or Article</dt><dd style="margin: 0; text-align: right;">5–7 business days</dd>
+                <dt style="font-weight: 500;">Editing</dt><dd style="margin: 0; text-align: right;">Usually within a week</dd>
+                <dt style="font-weight: 500;">Ghostwriting</dt><dd style="margin: 0; text-align: right;">Varies, depending on the project</dd>
+              </dl>
+            </div>
+          </details>
+          <details style="border-bottom: 1px solid #0a0a0a;">
+            <summary style="list-style: none; display: flex; justify-content: space-between; gap: 16px; align-items: baseline; padding: 18px 0; cursor: pointer; font-weight: 500; font-size: clamp(19px, 1.8vw, 24px); line-height: 1.2; letter-spacing: -0.01em;" style-hover="color: #0b7a3e;">Can we start with something small before committing to a bigger project?<span aria-hidden="true" style="font-weight: 400; font-size: 26px; line-height: 1;">+</span></summary>
+            <div style="padding: 0 0 22px;"><p style="margin: 0; text-wrap: pretty;">Yes, a small project is a low-risk way to see how we work together before committing to something bigger. Most of my ongoing clients started with something small and expanded from there.</p></div>
+          </details>
+          <details style="border-bottom: 1px solid #0a0a0a;">
+            <summary style="list-style: none; display: flex; justify-content: space-between; gap: 16px; align-items: baseline; padding: 18px 0; cursor: pointer; font-weight: 500; font-size: clamp(19px, 1.8vw, 24px); line-height: 1.2; letter-spacing: -0.01em;" style-hover="color: #0b7a3e;">What kinds of businesses do you work with?<span aria-hidden="true" style="font-weight: 400; font-size: 26px; line-height: 1;">+</span></summary>
+            <div style="padding: 0 0 22px;"><p style="margin: 0; text-wrap: pretty;">Almost any industry. I’ve written for national food brands, private banks, universities, and small businesses in a dozen different sectors. What actually matters is whether the business has a story and voice worth surfacing. Most do, whether they realize it yet or not. If you care that your writing sounds like your business and not like every other business in your industry, we’re probably a fit.</p></div>
+          </details>
+          <details style="border-bottom: 1px solid #0a0a0a;">
+            <summary style="list-style: none; display: flex; justify-content: space-between; gap: 16px; align-items: baseline; padding: 18px 0; cursor: pointer; font-weight: 500; font-size: clamp(19px, 1.8vw, 24px); line-height: 1.2; letter-spacing: -0.01em;" style-hover="color: #0b7a3e;">What do you need from me to get started?<span aria-hidden="true" style="font-weight: 400; font-size: 26px; line-height: 1;">+</span></summary>
+            <div style="padding: 0 0 22px;"><p style="margin: 0; text-wrap: pretty;">Not much. A conversation to talk through what you’re trying to accomplish and how you’d describe your business in your own words. Any materials you have — brand guidelines, past copy, marketing collateral, the actual products or services being written about — are helpful but not required. If you don’t have that stuff, we’ll figure it out together.</p></div>
+          </details>
+          <details style="border-bottom: 1px solid #0a0a0a;">
+            <summary style="list-style: none; display: flex; justify-content: space-between; gap: 16px; align-items: baseline; padding: 18px 0; cursor: pointer; font-weight: 500; font-size: clamp(19px, 1.8vw, 24px); line-height: 1.2; letter-spacing: -0.01em;" style-hover="color: #0b7a3e;">What if I don’t like the first draft?<span aria-hidden="true" style="font-weight: 400; font-size: 26px; line-height: 1;">+</span></summary>
+            <div style="padding: 0 0 22px;"><p style="margin: 0; text-wrap: pretty;">That’s what the revision round is for. First drafts are a starting point, not a finished product — I don’t expect any client to fall in love with the first version, though I never complain when a client tells me they wouldn’t change a word. Send me the feedback, tell me what’s not landing, and I’ll rework it. If we still haven’t nailed it after a second round, we keep going (billed hourly at that point).</p></div>
+          </details>
+          <details style="border-bottom: 1px solid #0a0a0a;">
+            <summary style="list-style: none; display: flex; justify-content: space-between; gap: 16px; align-items: baseline; padding: 18px 0; cursor: pointer; font-weight: 500; font-size: clamp(19px, 1.8vw, 24px); line-height: 1.2; letter-spacing: -0.01em;" style-hover="color: #0b7a3e;">Do you also do graphic design?<span aria-hidden="true" style="font-weight: 400; font-size: 26px; line-height: 1;">+</span></summary>
+            <div style="padding: 0 0 22px;"><p style="margin: 0; text-wrap: pretty;">No. I’ve worked with dozens of graphic designers over the years and appreciate what good design does for good writing, but I’m not a designer myself. If you need one, I’m happy to point you toward talented people I trust.</p></div>
+          </details>
+          <details style="border-bottom: 1px solid #0a0a0a;">
+            <summary style="list-style: none; display: flex; justify-content: space-between; gap: 16px; align-items: baseline; padding: 18px 0; cursor: pointer; font-weight: 500; font-size: clamp(19px, 1.8vw, 24px); line-height: 1.2; letter-spacing: -0.01em;" style-hover="color: #0b7a3e;">Are you accepting new clients right now?<span aria-hidden="true" style="font-weight: 400; font-size: 26px; line-height: 1;">+</span></summary>
+            <div style="padding: 0 0 22px;"><p style="margin: 0; font-size: 22px; font-weight: 500;">Yes.</p></div>
+          </details>
+        </div>
+      </section>
+    </div>
+    </sc-if>
+  </main>
+
+  <footer style="padding: 40px clamp(16px, 3vw, 40px) 32px; border-top: 1px solid #0a0a0a; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 32px 40px; font-size: 15px; line-height: 1.5;">
+    <div>
+      <p style="margin: 0; font-weight: 500;">Mike Billeter Creative</p>
+      <p style="margin: 0;">Sioux Falls, South Dakota</p>
+    </div>
+    <div>
+      <a href="mailto:mike.billeter@gmail.com" style="text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; overflow-wrap: anywhere;" style-hover="color: #0b7a3e;">mike.billeter@gmail.com</a>
+    </div>
+    <nav aria-label="Footer" style="display: grid; gap: 4px;">
+      <a href="#/" style="text-decoration: none;" style-hover="color: #0b7a3e;">Home</a>
+      <a href="#/services" style="text-decoration: none;" style-hover="color: #0b7a3e;">Services</a>
+      <a href="#/process" style="text-decoration: none;" style-hover="color: #0b7a3e;">Process</a>
+      <a href="#/about" style="text-decoration: none;" style-hover="color: #0b7a3e;">About</a>
+      <a href="#/contact" style="text-decoration: none;" style-hover="color: #0b7a3e;">Contact &amp; FAQs</a>
+    </nav>
+    <div>
+      <p style="margin: 0;">© 2026 Mike Billeter Creative</p>
+      <p style="margin: 6px 0 0; font-size: 13px; color: #6b6b6b;">Written by a human. Earlier edition: <button type="button" onClick="{{ enterY2k }}" title="A keyboard shortcut, of sorts." style="font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px;" style-hover="color: #0b7a3e;">y2k</button>.</p>
+    </div>
+  </footer>
+</div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;startMode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;modern&quot;,&quot;y2k&quot;],&quot;default&quot;:&quot;modern&quot;,&quot;tsType&quot;:&quot;'modern' | 'y2k'&quot;,&quot;section&quot;:&quot;Behavior&quot;},&quot;heroEditAnimation&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Behavior&quot;},&quot;showTestimonials&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Content&quot;},&quot;testimonials&quot;:{&quot;editor&quot;:null,&quot;default&quot;:[],&quot;tsType&quot;:&quot;{quote: string; name: string; title?: string}[]&quot;,&quot;section&quot;:&quot;Content&quot;}}">
+class Component extends DCLogic {
+  state = { route: 'home', anchor: null, mode: 'modern', fx: null, edit: 0, form: { status: 'idle', errors: {}, fields: null } };
+  mainRef = React.createRef();
+  formRef = React.createRef();
+  canvasRef = React.createRef();
+  buf = ''; lastKey = 0; timers = []; prevSnap = { route: 'home', mode: 'modern', anchor: null };
+
+  componentDidMount() {
+    this.reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.onHash(); window.addEventListener('hashchange', this.onHash);
+    window.addEventListener('keydown', this.onKey);
+    let saved = null; try { saved = sessionStorage.getItem('mbw-mode'); } catch (e) {}
+    if (this.props.startMode === 'y2k' || saved === 'y2k') { this.setState({ mode: 'y2k' }, this.applyChrome); }
+    else this.applyChrome();
+    import('./lib/contact.js').then(m => { this.contact = m; this.applyChrome(); });
+    this.startEdit();
+    this.formShownAt = Date.now();
+    this.mountMotion();
+  }
+  componentWillUnmount() {
+    window.removeEventListener('hashchange', this.onHash); window.removeEventListener('keydown', this.onKey);
+    this.timers.forEach(clearTimeout); this.killMotion(); this.killThree();
+  }
+  componentDidUpdate() {
+    const p = this.prevSnap, s = this.state;
+    const routeChanged = p.route !== s.route, modeChanged = p.mode !== s.mode, anchorChanged = p.anchor !== s.anchor;
+    this.prevSnap = { route: s.route, mode: s.mode, anchor: s.anchor };
+    if (routeChanged || modeChanged) {
+      this.applyChrome(); this.formShownAt = Date.now();
+      if (routeChanged && s.form.status !== 'idle') this.setState({ form: { status: 'idle', errors: {}, fields: null } });
+      this.mountMotion();
+    }
+    if (routeChanged || anchorChanged || modeChanged) this.scrollToAnchor();
+  }
+
+  // ── routing ──
+  onHash = () => {
+    const h = (location.hash || '#/').replace(/^#\/?/, '');
+    const [seg, anchor] = h.split('/');
+    const routes = ['services', 'process', 'about', 'contact'];
+    const route = routes.includes(seg) ? seg : 'home';
+    if (route !== this.state.route || (anchor || null) !== this.state.anchor) this.setState({ route, anchor: anchor || null });
+  };
+  scrollToAnchor() {
+    const { anchor } = this.state;
+    requestAnimationFrame(() => {
+      const el = anchor && document.getElementById(anchor);
+      if (el) { const y = el.getBoundingClientRect().top + window.scrollY - 72; window.scrollTo({ top: y, behavior: this.reduced ? 'auto' : 'smooth' }); }
+      else { window.scrollTo(0, 0); const m = this.mainRef.current; if (m && document.activeElement && document.activeElement.tagName === 'A') m.focus({ preventScroll: true }); }
+    });
+  }
+  applyChrome() {
+    const titles = { home: 'Mike Billeter Writing — Copy that sounds like somebody wrote it', services: 'Services & Pricing — Mike Billeter Writing', process: 'How It Works — Mike Billeter Writing', about: 'About Mike — Mike Billeter Writing', contact: 'Contact & FAQs — Mike Billeter Writing' };
+    const descs = { home: 'Mike Billeter is a copywriter. Website copy, email campaigns, editing, blog posts, and ghostwriting that sound like somebody wrote them.', services: 'Website copy from $900, email campaigns from $650, editing and ghostwriting at $150/hour, retainers from $450/month. Prices listed on purpose.', process: 'Six steps from first email to final delivery: conversation, agreement and deposit, first draft, consolidated feedback, final invoice.', about: 'Mike Billeter walked across the United States, then spent almost twenty years writing for food brands, banks, universities, and non-profits.', contact: 'Send Mike a note about your project, or read the FAQs on timelines, revisions, and getting started.' };
+    const y2k = this.state.mode === 'y2k';
+    document.title = (y2k ? '★ ' : '') + titles[this.state.route];
+    const set = (sel, attr, val) => { const el = document.head.querySelector(sel); if (el) el.setAttribute(attr, val); };
+    set('meta[name="description"]', 'content', descs[this.state.route]);
+    set('meta[property="og:title"]', 'content', titles[this.state.route]);
+    set('meta[name="theme-color"]', 'content', y2k ? '#000066' : '#ffffff');
+    let canon = document.head.querySelector('link[rel="canonical"]');
+    if (!canon) { canon = document.createElement('link'); canon.rel = 'canonical'; document.head.appendChild(canon); }
+    const base = this.contact ? this.contact.SITE.url : ''; if (base) canon.href = base + (this.state.route === 'home' ? '/' : '/' + this.state.route);
+    document.body.style.background = y2k ? '#000066' : '#ffffff';
+    try { sessionStorage.setItem('mbw-mode', this.state.mode); } catch (e) {}
+  }
+
+  // ── y2k easter egg ──
+  onKey = (e) => {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    const t = e.target;
+    if (t && t.closest && t.closest('input, textarea, select, [contenteditable]:not([contenteditable="false"])')) return;
+    if (e.key === 'Escape' && this.state.mode === 'y2k') { this.switchMode('modern'); return; }
+    if (typeof e.key !== 'string' || e.key.length !== 1) return;
+    const now = Date.now(); if (now - this.lastKey > 1500) this.buf = ''; this.lastKey = now;
+    this.buf = (this.buf + e.key.toLowerCase()).slice(-3);
+    if (this.buf === 'y2k') { this.buf = ''; this.switchMode(this.state.mode === 'y2k' ? 'modern' : 'y2k'); }
+  };
+  switchMode(mode) {
+    if (this.state.fx || mode === this.state.mode) return;
+    if (this.reduced) { this.setState({ mode }, () => window.scrollTo(0, 0)); return; }
+    this.setState({ fx: 'out' });
+    this.timers.push(setTimeout(() => { this.setState({ mode, fx: 'in' }); window.scrollTo(0, 0); }, 680));
+    this.timers.push(setTimeout(() => this.setState({ fx: null }), 1220));
+  }
+  exitY2k = () => this.switchMode('modern');
+  enterY2k = () => this.switchMode('y2k');
+
+  // ── hero edit line ──
+  startEdit() {
+    if (this.props.heroEditAnimation === false || this.reduced) { this.setState({ edit: 6 }); return; }
+    const steps = [1400, 650, 650, 800, 700, 1000];
+    let t = 0; steps.forEach((d, i) => { t += d; this.timers.push(setTimeout(() => this.setState({ edit: i + 1 }), t)); });
+  }
+  editLine() {
+    const E = React.createElement, s = this.state.edit;
+    const mark = (txt, struck) => E(struck ? 's' : 'span', { style: { textDecorationColor: '#0b7a3e', textDecorationThickness: '2px', color: struck ? '#9a9a9a' : 'inherit', transition: 'color .35s ease' } }, txt);
+    const sentence = E('p', { style: { margin: 0, fontSize: 'clamp(20px, 2vw, 26px)', lineHeight: 1.35, letterSpacing: '-0.01em' } },
+      mark('We craft ', s >= 5), mark('compelling, ', s >= 1), mark('results-driven ', s >= 2), mark('content ', s >= 5), mark('solutions tailored to your unique needs.', s >= 3));
+    const note = E('p', { style: { margin: '10px 0 0', fontSize: '15px', fontWeight: 500, color: '#0b7a3e', opacity: s >= 4 ? 1 : 0, transition: 'opacity .4s ease' } }, 'Says nothing. Cut.');
+    const ins = E('p', { style: { margin: '18px 0 0', fontSize: 'clamp(20px, 2vw, 26px)', lineHeight: 1.35, letterSpacing: '-0.01em', opacity: s >= 5 ? 1 : 0, transform: s >= 5 ? 'none' : 'translateY(6px)', transition: 'opacity .5s ease, transform .5s ease' } },
+      E('ins', { style: { textDecoration: 'underline', textDecorationColor: '#0b7a3e', textDecorationThickness: '2px', textUnderlineOffset: '.18em' } }, 'Find the specific thing that makes a business different, and say it in a way people actually remember.'),
+      E('span', { style: { display: 'inline-block', width: '2px', height: '1em', verticalAlign: '-0.15em', marginLeft: '3px', background: '#0b7a3e', opacity: s === 5 ? 1 : 0, animation: 'mbwCaret 1s steps(1) infinite' } }));
+    return E('div', null, sentence, note, ins);
+  }
+
+  // ── GSAP scroll motion ──
+  mountMotion() {
+    this.killMotion(); this.killThree();
+    if (this.state.mode !== 'modern') return;
+    requestAnimationFrame(() => {
+      const gsap = window.gsap, ST = window.ScrollTrigger;
+      if (this.state.route === 'home') this.initThree();
+      if (!gsap || !ST || this.reduced) return;
+      gsap.registerPlugin(ST);
+      this.ctx = gsap.context(() => {
+        gsap.fromTo('[data-hero-line]', { yPercent: 110 }, { yPercent: 0, duration: 1.2, stagger: 0.09, ease: 'power4.out', delay: 0.15 });
+        document.querySelectorAll('[data-reveal]').forEach(el => {
+          gsap.fromTo(el, { y: 36, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
+        });
+        document.querySelectorAll('[data-reveal-group]').forEach(g => {
+          gsap.fromTo(g.children, { y: 28, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, stagger: 0.08, ease: 'power3.out', scrollTrigger: { trigger: g, start: 'top 86%', once: true } });
+        });
+        document.querySelectorAll('[data-parallax]').forEach(img => {
+          gsap.fromTo(img, { yPercent: -16 }, { yPercent: 16, ease: 'none', scrollTrigger: { trigger: img.parentElement, start: 'top bottom', end: 'bottom top', scrub: true } });
+        });
+        document.querySelectorAll('[data-scale]').forEach(el => {
+          gsap.fromTo(el, { scale: 0.86, opacity: 0.25 }, { scale: 1, opacity: 1, ease: 'none', scrollTrigger: { trigger: el, start: 'top 95%', end: 'top 45%', scrub: true } });
+        });
+        const line = document.querySelector('[data-progress-line]');
+        if (line) gsap.fromTo(line, { scaleY: 0 }, { scaleY: 1, ease: 'none', scrollTrigger: { trigger: line.parentElement, start: 'top 55%', end: 'bottom 70%', scrub: true } });
+        document.querySelectorAll('[data-step-num]').forEach(n => {
+          gsap.fromTo(n, { xPercent: -12, opacity: 0.15 }, { xPercent: 0, opacity: 1, ease: 'none', scrollTrigger: { trigger: n.parentElement, start: 'top 90%', end: 'top 45%', scrub: true } });
+        });
+        const hero = this.canvasRef.current && this.canvasRef.current.parentElement;
+        if (hero) ST.create({ trigger: hero, start: 'top top', end: 'bottom top', scrub: true, onUpdate: self => { this.heroProgress = self.progress; } });
+      });
+      ST.refresh();
+    });
+  }
+  killMotion() { if (this.ctx) { this.ctx.revert(); this.ctx = null; } }
+
+  // ── interactive sand field (hero background) ──
+  async initThree() {
+    const canvas = this.canvasRef.current; if (!canvas) return;
+    let m; try { m = await import('./lib/sand.js'); } catch (e) { return; }
+    if (this.canvasRef.current !== canvas || this.state.route !== 'home' || this.three) return;
+    const surface = canvas.parentElement; surface.style.touchAction = 'pan-y';
+    const dispose = m.mountSand(canvas, surface, { background: '#fafaf7' });
+    this.three = { dispose: () => { dispose(); surface.style.touchAction = ''; } };
+  }
+  killThree() { if (this.three) { this.three.dispose(); this.three = null; } this.heroProgress = 0; }
+
+  // ── contact form ──
+  readForm() {
+    const f = this.formRef.current; if (!f) return {};
+    const g = n => (f.elements[n] ? f.elements[n].value : '');
+    return { name: g('name'), email: g('email'), message: g('message'), timeline: g('timeline'), company: g('company') };
+  }
+  onSubmit = async (e) => {
+    e.preventDefault();
+    if (!this.contact) { try { this.contact = await import('./lib/contact.js'); } catch (err) { this.setState({ form: { status: 'error', errors: {}, fields: this.readForm() } }); return; } }
+    const fields = this.readForm();
+    const errors = this.contact.validate(fields);
+    if (Object.keys(errors).length) {
+      this.setState({ form: { status: 'idle', errors, fields } });
+      const first = ['name', 'email', 'message'].find(k => errors[k]); const el = this.formRef.current && this.formRef.current.elements[first]; if (el) el.focus();
+      return;
+    }
+    if (fields.company) { this.setState({ form: { status: 'sent', errors: {}, fields } }); return; }
+    if (Date.now() - this.formShownAt < this.contact.SITE.form.minSeconds * 1000) { this.setState({ form: { status: 'tooFast', errors: {}, fields } }); return; }
+    this.setState({ form: { status: 'pending', errors: {}, fields } });
+    try {
+      const r = await this.contact.sendInquiry(fields);
+      this.setState({ form: { status: r.status, errors: {}, fields } });
+      if (r.status === 'sent' && this.formRef.current) this.formRef.current.reset();
+    } catch (err) { this.setState({ form: { status: 'error', errors: {}, fields } }); }
+  };
+
+  renderVals() {
+    const { route, mode, fx, form } = this.state;
+    const cur = r => (route === r ? 'page' : undefined);
+    const testimonials = Array.isArray(this.props.testimonials) ? this.props.testimonials : [];
+    const mailto = this.contact && form.fields ? this.contact.mailtoHref(form.fields) : 'mailto:mike.billeter@gmail.com?subject=%5BWebsite%20Inquiry%5D';
+    return {
+      route, anchor: this.state.anchor,
+      isModern: mode === 'modern', isY2k: mode === 'y2k', fxOut: fx === 'out', fxIn: fx === 'in',
+      isHome: route === 'home', isServices: route === 'services', isProcess: route === 'process', isAbout: route === 'about', isContact: route === 'contact',
+      curServices: cur('services'), curProcess: cur('process'), curAbout: cur('about'), curContact: cur('contact'),
+      mainRef: this.mainRef, formRef: this.formRef, canvasRef: this.canvasRef, exitY2k: this.exitY2k, enterY2k: this.enterY2k,
+      editLine: this.editLine(),
+      showTestimonials: !!this.props.showTestimonials && testimonials.length > 0, testimonials,
+      onSubmit: this.onSubmit,
+      nameInvalid: !!form.errors.name, emailInvalid: !!form.errors.email, messageInvalid: !!form.errors.message,
+      nameError: form.errors.name, emailError: form.errors.email, messageError: form.errors.message,
+      isPending: form.status === 'pending', isSent: form.status === 'sent', isError: form.status === 'error', isUnconfigured: form.status === 'unconfigured', isTooFast: form.status === 'tooFast',
+      submitLabel: form.status === 'pending' ? 'Sending…' : 'Send It Over',
+      mailtoHref: mailto,
+    };
+  }
+}
+</script>
+</body>
+</html>

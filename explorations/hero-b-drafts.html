@@ -1,0 +1,31 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>B — Drafts (crumpled pages drifting up)</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500&display=swap">
+<style>html,body{margin:0;height:100%;background:#fff;color:#0a0a0a;font-family:'Space Grotesk',system-ui,sans-serif;overflow:hidden}
+#hero{position:relative;height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:40px clamp(16px,3vw,40px) clamp(24px,4vw,56px);cursor:grab}
+canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+h1{position:relative;margin:0;font-weight:500;font-size:clamp(38px,8.4vw,136px);line-height:1.04;letter-spacing:-.035em;pointer-events:none}
+h1 span{display:block}h1 .g{color:#0b7a3e}
+.tag{position:absolute;top:18px;left:clamp(16px,3vw,40px);font-size:15px;font-weight:500}</style></head>
+<body><section id="hero"><canvas id="c"></canvas><p class="tag">B — Drafts (crumpled pages drifting up)</p>
+<h1><span>Most copywriter websites</span><span>sound like most</span><span>copywriter websites.</span><span class="g">This one tries not to.</span></h1></section>
+<script type="module">
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js';
+const parent=document.getElementById('hero'),canvas=document.getElementById('c');
+const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+const scene=new THREE.Scene();const camera=new THREE.PerspectiveCamera(38,1,.1,100);camera.position.set(0,0,15);
+let tx=0,ty=0,px=0,py=0,spin=0,spinV=0,drag=false,lx=0;
+addEventListener('pointermove',e=>{const r=parent.getBoundingClientRect();tx=(e.clientX-r.left)/r.width-.5;ty=(e.clientY-r.top)/r.height-.5;if(drag){const d=(e.clientX-lx)/r.width*Math.PI*1.6;spin+=d;spinV=d;lx=e.clientX}});
+parent.addEventListener('pointerdown',e=>{drag=true;lx=e.clientX;spinV=0;parent.style.cursor='grabbing'});addEventListener('pointerup',()=>{drag=false;parent.style.cursor='grab'});
+const size=()=>{const w=parent.clientWidth,h=parent.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();camera.position.z=w<700?20:15};size();addEventListener('resize',size);
+
+scene.add(new THREE.HemisphereLight(0xffffff,0xbfbfbf,1.6));const dl=new THREE.DirectionalLight(0xffffff,1.2);dl.position.set(3,6,8);scene.add(dl);
+const g=new THREE.Group();scene.add(g);const balls=[];
+for(let i=0;i<14;i++){const geo=new THREE.IcosahedronGeometry(1,3);const pos=geo.attributes.position;const seed=Math.random()*10;
+for(let k=0;k<pos.count;k++){const v=new THREE.Vector3().fromBufferAttribute(pos,k);const n=Math.sin(v.x*3.1+seed)*Math.cos(v.y*2.7+seed)*Math.sin(v.z*3.3+seed);v.multiplyScalar(1+n*.22+(Math.random()-.5)*.08);pos.setXYZ(k,v.x,v.y,v.z)}
+geo.computeVertexNormals();const m=new THREE.Mesh(geo,new THREE.MeshStandardMaterial({color:0xf4f4f4,flatShading:true,roughness:.95}));
+const s=.5+Math.random()*.9;m.scale.setScalar(s);m.position.set((Math.random()-.5)*20,(Math.random()-.5)*12,(Math.random()-.5)*6-1);m.userData={vy:.15+Math.random()*.25,rx:(Math.random()-.5)*.4,ry:(Math.random()-.5)*.4};g.add(m);balls.push(m)}
+let t0=performance.now(),last=t0;
+(function loop(now){requestAnimationFrame(loop);const dt=Math.min(.05,(now-last)/1000);last=now;px+=(tx-px)*.04;py+=(ty-py)*.04;if(!drag){spin+=spinV;spinV*=.94}
+balls.forEach(b=>{b.position.y+=b.userData.vy*dt;b.rotation.x+=b.userData.rx*dt;b.rotation.y+=b.userData.ry*dt;if(b.position.y>8){b.position.y=-8;b.position.x=(Math.random()-.5)*20}});
+g.rotation.y=px*.35+spin;g.rotation.x=py*.2;renderer.render(scene,camera)})(t0);
+</script></body></html>

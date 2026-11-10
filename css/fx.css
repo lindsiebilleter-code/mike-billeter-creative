@@ -1,0 +1,4 @@
+@keyframes mbwCrtOut { 0% { opacity: 0; background: #fff; transform: scaleY(1); } 18% { opacity: 1; background: #fff; transform: scaleY(1); } 55% { opacity: 1; background: #fff; transform: scaleY(0.006); } 56% { opacity: 1; background: #000; transform: scaleY(1); } 100% { opacity: 1; background: #000; transform: scaleY(1); } }
+@keyframes mbwCrtIn { 0% { opacity: 1; } 45% { opacity: 1; } 100% { opacity: 0; } }
+.mbw-fx-out { position: fixed; inset: 0; z-index: 9999; pointer-events: none; transform-origin: 50% 50%; animation: mbwCrtOut 700ms cubic-bezier(.7,0,.3,1) both; }
+.mbw-fx-in { position: fixed; inset: 0; z-index: 9999; pointer-events: none; background: repeating-linear-gradient(0deg, #000 0 2px, #0a0a1a 2px 4px); animation: mbwCrtIn 520ms ease-out both; }
