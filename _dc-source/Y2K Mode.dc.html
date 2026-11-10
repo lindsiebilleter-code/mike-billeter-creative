@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="assets/y2k/retro.css">
+</helmet>
+<div class="y2k-root" data-screen-label="Y2K Mode">
+<div class="utility-bar" role="region" aria-label="Site utilities"><span><img src="assets/y2k/sparkle.gif" alt="" width="16" height="16"> Welcome, Web Traveler!</span><span>Best viewed at 800 × 600 · 56k friendly</span><button type="button" class="exit-button" onClick="{{ onExit }}" title="Press Escape to return to the modern site">RETURN TO THE FUTURE »</button></div>
+<div class="page-shell">
+<header class="site-header">
+  <a href="#/" class="logo-lockup" aria-label="Mike Billeter Creative home"><img class="mail-gif" src="assets/y2k/mail-bounce.gif" alt="" width="32" height="24"><span><span class="eyebrow">THE OFFICIAL HOMEPAGE OF</span><span class="wordmark">MIKE BILLETER CREATIVE</span><span class="tagline">Copy that sounds like somebody wrote it.</span></span></a>
+  <div class="status-box"><span class="blink">● AVAILABLE</span><small>for select writing projects</small></div>
+</header>
+<div class="marquee" aria-label="Site announcement"><span>★ MOST COPYWRITER WEBSITES SOUND LIKE MOST COPYWRITER WEBSITES. THIS ONE TRIES NOT TO. ★</span></div>
+<nav class="top-nav" aria-label="Main navigation">
+  <a href="#/" aria-current="{{ curHome }}">HOME</a>
+  <a href="#/services" aria-current="{{ curServices }}">SERVICES &amp; PRICING</a>
+  <a href="#/process" aria-current="{{ curProcess }}">HOW IT WORKS</a>
+  <a href="#/about" aria-current="{{ curAbout }}">ABOUT MIKE</a>
+  <a href="#/contact" aria-current="{{ curContact }}">CONTACT / FAQ</a>
+</nav>
+<div class="layout-grid">
+<aside class="sidebar">
+  <section class="side-box"><h2>QUICK LINKS</h2><a href="#/services/website-copy">» Website Copy</a><a href="#/services/email-campaigns">» Email Campaigns</a><a href="#/services/editing">» Editing</a><a href="#/services/ghostwriting">» Ghostwriting</a><a href="#/services/retainers">» Retainers</a></section>
+  <section class="side-box loud"><p class="new-badge">NEW!</p><strong>Human-written copy</strong><p>Now with personality, specificity, and no AI-flavored smoothness.</p></section>
+  <section class="side-box center"><img src="assets/y2k/sparkle.gif" alt="" width="16" height="16"><p>You are visitor</p><div class="counter" aria-label="Visitor number 0001999">0 0 0 1 9 9 9</div><p>since this page began existing.</p></section>
+  <section class="side-box center"><p><strong>This site is:</strong></p><div class="browser-badge">HAND<br>CODED</div><p class="tiny">No committee.<br>No robot.<br>No splash page.</p></section>
+  <section class="side-box center"><p class="tiny">Tired of 1999?</p><button type="button" class="exit-button" onClick="{{ onExit }}">EXIT 1999</button><p class="tiny">(or press Esc)</p></section>
+</aside>
+<main class="content" id="y2k-main">
+
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+<section class="hero web-section">
+  <div class="hero-copy">
+    <p class="kicker">HELLO. I'M MIKE.</p>
+    <h1>Most copywriter websites sound like most copywriter websites.</h1>
+    <p class="hero-line">This one tries not to.</p>
+    <p>I've spent almost twenty years writing for a living. For non-profits and national food brands. For private banks and universities. And for a bunch of people and businesses in between.</p>
+    <p>What I do differently from most writers is find the specific thing that makes a business different, and say it in a way people actually remember.</p>
+    <p class="callout">If your website or product's copy could belong to any of your competitors, it probably does. That's the problem I fix.</p>
+    <a href="#/contact" class="bevel-button">LET'S FIX IT →</a>
+  </div>
+  <figure class="hero-image-frame"><img src="assets/y2k/writer-room-mike.png" alt="Pixel-art Mike working at a beige CRT computer in a room full of comics and retro games" width="320" height="240"><figcaption>Actual working conditions may vary.</figcaption></figure>
+</section>
+<div class="pixel-rule" aria-hidden="true"><span>◆</span><span>◆</span><span>◆</span><span>◆</span><span>◆</span></div>
+<section class="web-section">
+  <h2 class="section-title">HERE'S WHAT'S ACTUALLY HAPPENING TO YOUR COPY</h2>
+  <p>You know your business is different. You can feel it. The way you talk about it over coffee, the way you describe it to a friend who asks what you do—there's a specific personality in there, and it's the reason people choose you over the competition.</p>
+  <p>Then it hits the website, and somehow it comes out sounding like every other business in your industry.</p>
+  <p>That's not a you problem. That's a writing problem. Most copy gets written the same way it's always been written: pull the same words and phrases from the same bucket, smooth out anything interesting or different, end up with something technically correct and totally forgettable. AI hasn't helped—it's made the bucket bigger and the words smoother. And it's jacked up the forgettability a few levels.</p>
+  <p>What's missing is somebody whose actual job is to listen to how you talk about your business, find the parts that make it sound like yours, and put those parts on the page in a way that doesn't bury your voice.</p>
+  <p class="big-finish">That's what I do.</p>
+</section>
+<section class="client-strip web-section">
+  <h2 class="section-title">PREVIOUSLY WRITTEN FOR</h2>
+  <p><strong>Otis Spunkmeyer · Lamb Weston · Borden · Kerry Beverages · McDonald's · The Good Samaritan Society · Passenger Productions · Dordt University · First Dakota National Bank</strong></p>
+  <p>And a long list of private businesses that needed their copy to sound like them instead of like everyone else.</p>
+  <a href="#/services" class="text-link">See services and pricing →</a>
+</section>
+<section class="web-section">
+  <h2 class="section-title">A LITTLE ABOUT HOW THIS WORKS</h2>
+  <p>I'm a one-person operation. That means you're not getting an account manager, a project coordinator, and a writer you've never met. You're getting me, from the first email through the final draft.</p>
+  <p>It also means I work the way most busy people actually want to work—over email, on your timeline, without a lot of meetings. You send me a clear brief, I respond evenings and weekends, and the writing shows up in your inbox when it's ready.</p>
+  <p class="callout">If you've ever wished a creative partner would just do the work and send it to you, this is everything you've been dreaming of.</p>
+  <a href="#/process" class="text-link">Read the full process →</a>
+</section>
+<section class="web-section ai-note">
+  <h2 class="section-title">A QUICK WORD ON AI</h2>
+  <p>Yes, AI can write copy. It can produce competent, professional, completely indistinguishable-from-everyone-else's copy in about thirty seconds. If that's what you're after, you genuinely don't need me—and I'm not being sarcastic.</p>
+  <p>But if you want writing that sounds like your business has a personality worth paying attention to, well, that's a different thing entirely. And that's what I'm passionate about.</p>
+</section>
+</sc-if>
+
+<sc-if value="{{ isServices }}" hint-placeholder-val="{{ false }}">
+<section class="web-section page-intro">
+  <p class="kicker">SERVICES.EXE</p>
+  <h1 class="page-heading">What I do, what it costs, and who it's actually for.</h1>
+  <p class="lead">Prices are listed because I'd rather you self-select than spend a chunk of your life on a "let's get on a call to discuss pricing" that goes nowhere.</p>
+  <p>If you don't see what you're looking for, send me an email and ask. This covers maybe 90% of what people hire me for. The other 10% comes up in conversation.</p>
+  <div class="service-stack">
+    <article class="service-card" id="website-copy"><div class="service-titlebar"><h2>Website Copy</h2><strong>Starts at $900</strong></div><div class="service-body">
+      <p>The thing most people hire me for. If your current website reads like every other website in your industry—or worse, like it was written by a committee that included a robot—this is the fix.</p>
+      <ul class="price-list"><li><strong>Starter — $900</strong> — Up to three primary pages. One discovery conversation. Two rounds of revisions. A good fit for solo operators, consultants, and small businesses.</li><li><strong>Standard — $1,350</strong> — Up to five pages: three primary plus two secondary. Two rounds of revisions. A good fit for established small and mid-size businesses.</li><li><strong>Full Site — $1,800+</strong> — Six or more pages, scoped after we talk. Two rounds of revisions per page. A good fit for a rebrand or repositioning.</li></ul>
+    </div></article>
+    <article class="service-card" id="email-campaigns"><div class="service-titlebar"><h2>Email Campaigns</h2><strong>Starts at $650</strong></div><div class="service-body">
+      <p>Sequences that get opened, get read, and don't sound like they were written by a robot pretending to be a friendly human. Welcome, launch, nurture, and re-engagement sequences all welcome.</p>
+      <ul class="price-list"><li><strong>Up to 3 emails — $650</strong></li><li><strong>4–5 emails — $950</strong></li><li><strong>6–7 emails — $1,250</strong></li><li><strong>8+ emails — scoped after we talk</strong></li></ul>
+      <p>Every email comes with a subject line, preview text, body copy, and call-to-action copy. I write the copy; I don't manage your email platform, set up automations, design templates, or guarantee open rates.</p>
+    </div></article>
+    <article class="service-card" id="editing"><div class="service-titlebar"><h2>Editing</h2><strong>$150/hour, two-hour minimum</strong></div><div class="service-body">
+      <p>For businesses that already have copy they mostly like and want it sharper, tighter, and more distinctly theirs. This isn't a discount version of writing—it's a different service for a different situation.</p>
+      <p>I'll review what you have, edit for voice, clarity, and impact, and return a marked-up version with changes and notes. Substantive editing, not just proofreading. If what you need is a full rewrite, I'll tell you upfront.</p>
+    </div></article>
+    <article class="service-card" id="blog-posts"><div class="service-titlebar"><h2>Blog Posts &amp; Articles</h2><strong>Starts at $300 per post</strong></div><div class="service-body">
+      <p>600–900 words of content that doesn't read like generic content. Longer pieces—1,200+ words, in-depth articles, and thought leadership—are scoped after we talk.</p>
+      <p>Best fit: businesses that want to publish consistently but don't have the time or inclination to write the posts themselves, and don't want to fill their site with the same SEO-stuffed slop everyone else is publishing.</p>
+    </div></article>
+    <article class="service-card" id="ghostwriting"><div class="service-titlebar"><h2>Ghostwriting</h2><strong>$150/hour</strong></div><div class="service-body">
+      <p>LinkedIn posts, longer-form essays, op-eds, executive thought leadership—whatever you need written in your voice rather than mine.</p>
+      <p>The piece should sound like you wrote it on a particularly sharp day, not like someone else wrote it for you. I scope ghostwriting hourly because the time depends on how much I'm starting with and how much voice-capture the piece needs.</p>
+    </div></article>
+    <article class="service-card" id="retainers"><div class="service-titlebar"><h2>Ongoing Retainer</h2><strong>Starts at $450/month</strong></div><div class="service-body">
+      <p>For businesses that need writing regularly and would rather not start from scratch every time. Once we've worked together and I know your voice, a retainer is the most efficient way to keep me on call.</p>
+      <ul class="price-list"><li><strong>3 hours/month — $450</strong> — Light touch: a few small things per month.</li><li><strong>5 hours/month — $700</strong> — Moderate: one bigger project plus some small stuff.</li><li><strong>8 hours/month — $1,050</strong> — Heavy: a significant ongoing writing partnership.</li><li><strong>Beyond 8 hours/month</strong> — Let's talk. Larger arrangements depend on availability.</li></ul>
+      <p>Retainers are billed at the start of each month. Unused hours don't roll over. Either of us can end the arrangement with 30 days notice. I take on a small number at a time, and I'll tell you honestly if I'm at capacity.</p>
+    </div></article>
+  </div>
+  <div class="split-panels" style="margin-top: 22px;">
+    <article class="warning-panel" id="what-i-dont-do"><h2>WHAT I DON'T DO</h2>
+      <p><strong>Social media management.</strong> I don't run accounts, schedule posts, or write recurring social content.</p>
+      <p><strong>Email platform setup and management.</strong> I write the emails. I don't log into your Mailchimp, set up automations, manage your list, or troubleshoot deliverability.</p>
+      <p><strong>Speed-priority work where voice doesn't matter.</strong> If you need 500 words tomorrow and don't care how it sounds, AI will do that faster and for free. I write more deliberately because the writing is the point.</p>
+    </article>
+    <article class="info-panel" id="practical-notes"><h2>A FEW PRACTICAL NOTES</h2>
+      <p><strong>Deposits:</strong> Projects over $300 require 50% to start. The rest is invoiced on final delivery. Smaller projects are billed on completion.</p>
+      <p><strong>Retainers:</strong> Billed at the start of each month. Unused hours don't roll over. 30 days notice, either direction.</p>
+      <p><strong>Revisions:</strong> Two rounds on Website Copy, one on most other projects. Additional rounds are $150/hour.</p>
+      <p><strong>Pauses:</strong> If a project is paused or canceled after I've started, the deposit covers the work completed to that point.</p>
+      <p><strong>Ownership:</strong> Once final payment is received, the copy is yours. Use it, modify it, republish it, ignore it—whatever you want.</p>
+    </article>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ isProcess }}" hint-placeholder-val="{{ false }}">
+<section class="web-section page-intro">
+  <p class="kicker">HOW_IT_WORKS.TXT</p>
+  <h1 class="page-heading">A copywriting project has a few moving parts.</h1>
+  <p class="lead">Here's the order they happen in, so you know what you're signing up for before you sign up.</p>
+  <ol class="steps">
+    <li><h2>1. You send the first email.</h2><p>Tell me what you need written, what your business does, and roughly when you need it. I'll come back within a day or two with honest thoughts on fit, a real ballpark on cost and timeline, and any questions.</p></li>
+    <li><h2>2. We have a real conversation.</h2><p>Usually a 45–60 minute call. This is where I hear how you actually talk about your business—the way you'd describe it to a friend, not the way it shows up in the brochure your administrative assistant put together in 2009.</p></li>
+    <li><h2>3. I send an agreement and deposit invoice.</h2><p>Once we've agreed on scope, I send a short written agreement covering what's being delivered, when, and at what cost. Half the project cost is due to start.</p></li>
+    <li><h2>4. I write the first draft.</h2><p>Depending on the project, this takes anywhere from a few days to a few weeks. You'll know the timeline before we start. I work evenings and weekends and will check in if I need your input.</p></li>
+    <li><h2>5. You send consolidated feedback.</h2><p>One round of edits means one consolidated set of notes—not a string of one-off requests over two weeks. I'll revise based on your feedback, then we go through one more round where included.</p></li>
+    <li><h2>6. Final delivery and invoice.</h2><p>Once the copy is approved, I deliver it in a clean format you can use. The remaining 50% is invoiced then. Once it's paid, the copy is yours—full ownership, no further obligations to me.</p></li>
+  </ol>
+  <p><a href="#/contact" class="bevel-button">START WITH AN EMAIL →</a></p>
+</section>
+</sc-if>
+
+<sc-if value="{{ isAbout }}" hint-placeholder-val="{{ false }}">
+<section class="web-section page-intro">
+  <p class="kicker">ABOUT_ME.HTML</p>
+  <h1 class="page-heading">About me, briefly.</h1>
+  <p class="lead">From 2012 to 2013, my wife and I walked across the United States. San Francisco to Delaware, on foot, with packs on our backs. It took fourteen months and somewhere around three thousand miles, depending on how you count.</p>
+  <p>I bring it up because most About pages start with a job title or a credential, and I think it's more useful to tell you something that's actually true about how I work. I'm someone who finishes things. Long things, slow things, things that turn out to be harder than they looked at the start. That trait has shaped every project I've taken on since.</p>
+  <figure class="hero-image-frame" style="max-width: 260px; margin: 18px 0;"><img src="assets/mike-square-400.jpg" alt="Photo of Mike Billeter smiling in glasses and a plaid shirt" width="400" height="400" style="aspect-ratio: 1 / 1; image-rendering: auto;"><figcaption>MIKE.JPG (30 KB) — download time on 56k: 6 sec</figcaption></figure>
+  <h2 class="subhead">THE WORK</h2>
+  <p>I've been writing professionally for almost twenty years. National food brands (Otis Spunkmeyer, Lamb Weston, Borden, Kerry Beverages). Private banking (Loft Advisors, the private wealth division of First Dakota National Bank). Higher education (Dordt University). National non-profits (Good Samaritan Society). A long stretch as a creative director at a church, leading a team of five. Plus plenty of hired-gun freelance work for clients who came to me through word of mouth.</p>
+  <p>The thread through all of it has been the same: figuring out what makes a business or organization sound like itself, and then writing in a way that makes that sound come through. Industries change. The job doesn't.</p>
+  <p>These days I lead copywriting in-house at a global non-profit, in addition to freelance work in the evenings and on weekends. The full-time role keeps me sharp on strategic and brand-level work. The freelance practice is where I get to work directly with small and mid-size businesses—the kind of voice-driven projects that don't fit inside a big organization's needs.</p>
+  <h2 class="subhead">HOW I THINK ABOUT THE WORK</h2>
+  <p>Most copy is written defensively. The writer plays it safe, picks the words least likely to offend, smooths out anything interesting, and the result is technically fine—and totally forgettable. AI accelerates the problem but didn't create it. It's been around longer than AI has.</p>
+  <p>I write the other way. The job is to find what's actually true about a business and put it on the page without sanding it down to nothing. Sometimes that means asking questions the client wasn't expecting. Sometimes it means pushing back when the obvious draft is the boring one. Usually it means listening more than writing, especially at the start.</p>
+  <p>This might sound like I take the craft too seriously. I don't. The copy serves the business, not the other way around, and I'll happily kill a line I love if a better one takes its place. But the writing should sound like somebody wrote it. That's the whole point.</p>
+  <h2 class="subhead">THE REST OF IT</h2>
+  <p>I live in Sioux Falls, South Dakota, with my wife, our four kids, and three dogs. (Yes, three dogs. I know.) We also have four kids in Heaven, which has shaped our family in ways I won't try to explain in a paragraph on a website. If you've never experienced true chaos, you're welcome at our house anytime before bedtime.</p>
+  <p>My wife and I are deeply involved in our church, and raising our kids to know Jesus is probably the single most important thing I do with my life. Everything else—including the writing—sits somewhere below that.</p>
+  <p>I love living in Sioux Falls. I hate that it's cold most of the year. Then again, the cold keeps the riff raff out. So…you win some, you lose some.</p>
+  <p><a href="#/contact" class="bevel-button">EMAIL MIKE →</a></p>
+</section>
+</sc-if>
+
+<sc-if value="{{ isContact }}" hint-placeholder-val="{{ false }}">
+<section class="web-section page-intro contact-section">
+  <p class="kicker">YOU'VE GOT MAIL!</p>
+  <h1 class="page-heading">Ready to start?</h1>
+  <p class="lead">The fastest way to start a project—or just get a question answered—is to send a note. Tell me what you need written, what your business does, and roughly when you need it. I usually respond within a day or two.</p>
+  <div class="contact-grid">
+    <form class="retro-form" ref="{{ formRef }}" onSubmit="{{ onSubmit }}" noValidate="{{ true }}">
+      <div class="form-titlebar">NEW MESSAGE</div>
+      <label for="y-name">Name *</label>
+      <input id="y-name" autoComplete="name" required="{{ true }}" aria-required="true" aria-invalid="{{ nameInvalid }}" aria-describedby="y-name-err" type="text" name="name">
+      <sc-if value="{{ nameInvalid }}" hint-placeholder-val="{{ false }}"><p class="form-error" id="y-name-err" role="alert">{{ nameError }}</p></sc-if>
+      <label for="y-email">Email *</label>
+      <input id="y-email" autoComplete="email" required="{{ true }}" aria-required="true" aria-invalid="{{ emailInvalid }}" aria-describedby="y-email-err" type="email" name="email">
+      <sc-if value="{{ emailInvalid }}" hint-placeholder-val="{{ false }}"><p class="form-error" id="y-email-err" role="alert">{{ emailError }}</p></sc-if>
+      <label for="y-project">Tell me about your project *</label>
+      <textarea id="y-project" name="message" required="{{ true }}" aria-required="true" aria-invalid="{{ messageInvalid }}" aria-describedby="y-project-err" rows="7"></textarea>
+      <sc-if value="{{ messageInvalid }}" hint-placeholder-val="{{ false }}"><p class="form-error" id="y-project-err" role="alert">{{ messageError }}</p></sc-if>
+      <label for="y-timeline">Timeline (optional)</label>
+      <input id="y-timeline" type="text" name="timeline">
+      <div class="hp" aria-hidden="true"><label for="y-company">Company</label><input id="y-company" name="company" type="text" tabIndex="-1" autoComplete="off"></div>
+      <label class="tiny" style="display: flex; align-items: center; gap: 6px; margin-top: 6px;"><input type="checkbox" ref="{{ soundRef }}" style="margin: 0;"> Play the "You've Got Mail" sound when it sends</label>
+      <button type="submit" disabled="{{ isPending }}">{{ submitLabel }}</button>
+      <p class="form-help">No email program required. Much better.</p>
+      <div aria-live="polite" role="status">
+        <sc-if value="{{ isSent }}" hint-placeholder-val="{{ false }}"><output class="form-status"><strong>YOU'VE GOT MAIL!</strong><span>Well, Mike does. Your message is on its way. Expect a reply within a day or two.</span></output></sc-if>
+        <sc-if value="{{ isUnconfigured }}" hint-placeholder-val="{{ false }}"><output class="form-status is-error"><strong>NOT SENT (YET)</strong><span>Form delivery isn't hooked up on this server, so nothing went anywhere. <a href="{{ mailtoHref }}">Click here to send it with your email program instead</a> — everything you typed comes along.</span></output></sc-if>
+        <sc-if value="{{ isError }}" hint-placeholder-val="{{ false }}"><output class="form-status is-error"><strong>TRANSMISSION ERROR</strong><span>That didn't go through. Your message is still in the form. Try again in a moment or <a href="{{ mailtoHref }}">send it by email</a>.</span></output></sc-if>
+        <sc-if value="{{ isTooFast }}" hint-placeholder-val="{{ false }}"><output class="form-status is-error"><strong>WHOA, SPEEDY</strong><span>Give it a second and press SEND IT OVER again.</span></output></sc-if>
+      </div>
+    </form>
+    <div class="email-panel">
+      <img src="assets/y2k/mail-bounce.gif" alt="" width="32" height="24">
+      <h2>Prefer regular email?</h2>
+      <a href="mailto:mike.billeter@gmail.com?subject=%5BWebsite%20Inquiry%5D">mike.billeter@gmail.com</a>
+      <p>If we're moving forward, the next step is a real conversation—not a sales call. That conversation is where the writing actually starts.</p>
+      <button type="button" class="sound-button" onClick="{{ playSound }}" aria-label="Play the You've Got Mail sound">▶ PLAY "YOU'VE GOT MAIL"</button>
+    </div>
+  </div>
+  <h2 class="subhead">FREQUENTLY ASKED QUESTIONS</h2>
+  <div class="faq-list">
+    <details><summary>How long does a typical project take?</summary><div><p>It depends, but here are honest ranges for the most common projects:</p><ul><li>Website Copy Starter (3 pages): 2–3 weeks from kickoff</li><li>Website Copy Standard (5 pages): 3–5 weeks</li><li>Website Copy Full Site (6+ pages): 5–6 weeks, scoped after we talk</li><li>Email Campaign: 1–2 weeks for a short sequence, 2–4 weeks for a longer one</li><li>Blog Post or Article: 5–7 business days</li><li>Editing: usually within a week</li><li>Ghostwriting: varies, depending on the project</li></ul></div></details>
+    <details><summary>Can we start with something small before committing to a bigger project?</summary><div><p>Yes, a small project is a low-risk way to see how we work together before committing to something bigger. Most of my ongoing clients started with something small and expanded from there.</p></div></details>
+    <details><summary>What kinds of businesses do you work with?</summary><div><p>Almost any industry. I've written for national food brands, private banks, universities, and small businesses in a dozen different sectors. What actually matters is whether the business has a story and voice worth surfacing. Most do, whether they realize it yet or not. If you care that your writing sounds like your business and not like every other business in your industry, we're probably a fit.</p></div></details>
+    <details><summary>What do you need from me to get started?</summary><div><p>Not much. A conversation to talk through what you're trying to accomplish and how you'd describe your business in your own words. Any materials you have—brand guidelines, past copy, marketing collateral, the actual products or services being written about—are helpful but not required. If you don't have that stuff, we'll figure it out together.</p></div></details>
+    <details><summary>What if I don't like the first draft?</summary><div><p>That's what the revision round is for. First drafts are a starting point, not a finished product—I don't expect any client to fall in love with the first version, though I never complain when a client tells me they wouldn't change a word. Send me the feedback, tell me what's not landing, and I'll rework it. If we still haven't nailed it after a second round, we keep going (billed hourly at that point).</p></div></details>
+    <details><summary>Do you also do graphic design?</summary><div><p>No. I've worked with dozens of graphic designers over the years and appreciate what good design does for good writing, but I'm not a designer myself. If you need one, I'm happy to point you toward talented people I trust.</p></div></details>
+    <details><summary>Are you accepting new clients right now?</summary><div><p>Yes.</p></div></details>
+  </div>
+</section>
+</sc-if>
+
+</main>
+</div>
+<footer>
+  <img src="assets/y2k/sparkle.gif" alt="" width="16" height="16">
+  <p>© 2026 Mike Billeter Writing · Sioux Falls, SD · <a href="mailto:mike.billeter@gmail.com">mike.billeter@gmail.com</a></p>
+  <p class="tiny">Optimized for humans. No cookies. No tracking pixels. No dancing baby.</p>
+  <p><button type="button" class="exit-button" onClick="{{ onExit }}">RETURN TO THE FUTURE »</button></p>
+</footer>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:&quot;100vh&quot;},&quot;route&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;services&quot;,&quot;process&quot;,&quot;about&quot;,&quot;contact&quot;],&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;'home' | 'services' | 'process' | 'about' | 'contact'&quot;},&quot;anchor&quot;:{&quot;editor&quot;:null,&quot;default&quot;:null,&quot;tsType&quot;:&quot;string | null&quot;},&quot;onExit&quot;:{&quot;editor&quot;:null,&quot;default&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;}}">
+class Component extends DCLogic {
+  state = { form: { status: 'idle', errors: {}, fields: null } };
+  formRef = React.createRef();
+  soundRef = React.createRef();
+  componentDidMount() { this.shownAt = Date.now(); import('./lib/contact.js').then(m => { this.contact = m; }); }
+  prevRoute = null;
+  componentDidUpdate() {
+    const r = this.props.route || 'home';
+    if (this.prevRoute !== null && this.prevRoute !== r) { this.shownAt = Date.now(); if (this.state.form.status !== 'idle') this.setState({ form: { status: 'idle', errors: {}, fields: null } }); }
+    this.prevRoute = r;
+  }
+  playSound = () => {
+    if (!this.audio) { this.audio = new Audio('assets/y2k/youve-got-mail-sound.mp3'); this.audio.preload = 'auto'; }
+    this.audio.currentTime = 0; this.audio.play().catch(() => {});
+  };
+  readForm() {
+    const f = this.formRef.current; if (!f) return {};
+    const g = n => (f.elements[n] ? f.elements[n].value : '');
+    return { name: g('name'), email: g('email'), message: g('message'), timeline: g('timeline'), company: g('company') };
+  }
+  onSubmit = async (e) => {
+    e.preventDefault();
+    if (!this.contact) { try { this.contact = await import('./lib/contact.js'); } catch (err) { this.setState({ form: { status: 'error', errors: {}, fields: this.readForm() } }); return; } }
+    const fields = this.readForm();
+    const errors = this.contact.validate(fields);
+    if (Object.keys(errors).length) {
+      this.setState({ form: { status: 'idle', errors, fields } });
+      const first = ['name', 'email', 'message'].find(k => errors[k]); const el = this.formRef.current.elements[first]; if (el) el.focus();
+      return;
+    }
+    if (fields.company) { this.setState({ form: { status: 'sent', errors: {}, fields } }); return; }
+    if (Date.now() - this.shownAt < this.contact.SITE.form.minSeconds * 1000) { this.setState({ form: { status: 'tooFast', errors: {}, fields } }); return; }
+    this.setState({ form: { status: 'pending', errors: {}, fields } });
+    try {
+      const r = await this.contact.sendInquiry(fields);
+      this.setState({ form: { status: r.status, errors: {}, fields } });
+      if (r.status === 'sent') { if (this.soundRef.current && this.soundRef.current.checked) this.playSound(); this.formRef.current.reset(); }
+    } catch (err) { this.setState({ form: { status: 'error', errors: {}, fields } }); }
+  };
+  renderVals() {
+    const route = this.props.route || 'home';
+    const cur = r => (route === r ? 'page' : undefined);
+    const { form } = this.state;
+    const mailto = this.contact && form.fields ? this.contact.mailtoHref(form.fields) : 'mailto:mike.billeter@gmail.com?subject=%5BWebsite%20Inquiry%5D';
+    return {
+      isHome: route === 'home', isServices: route === 'services', isProcess: route === 'process', isAbout: route === 'about', isContact: route === 'contact',
+      curHome: cur('home'), curServices: cur('services'), curProcess: cur('process'), curAbout: cur('about'), curContact: cur('contact'),
+      onExit: this.props.onExit || (() => {}), playSound: this.playSound,
+      formRef: this.formRef, soundRef: this.soundRef, onSubmit: this.onSubmit,
+      nameInvalid: !!form.errors.name, emailInvalid: !!form.errors.email, messageInvalid: !!form.errors.message,
+      nameError: form.errors.name, emailError: form.errors.email, messageError: form.errors.message,
+      isPending: form.status === 'pending', isSent: form.status === 'sent', isError: form.status === 'error', isUnconfigured: form.status === 'unconfigured', isTooFast: form.status === 'tooFast',
+      submitLabel: form.status === 'pending' ? 'SENDING…' : 'SEND IT OVER',
+      mailtoHref: mailto,
+    };
+  }
+}
+</script>
+</body>
+</html>
