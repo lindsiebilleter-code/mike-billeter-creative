@@ -21,18 +21,20 @@ Static HTML — no build step, no framework. Upload the folder to any host.
 Open `index.html`. Service anchors are ordinary fragments (`services.html#email-campaigns`).
 
 ## Form delivery
-The contact form never fakes success. Delivery is configured in `js/config.js`:
+The contact forms (modern and Y2K) post to `forms/submit.php`, a small PHP backend that emails each message through **Resend** and keeps a copy. Everything is configured in the browser at **`/admin/forms/`**, not in code:
 
-```js
-form: { endpoint: 'https://formspree.io/f/XXXX', accessKey: '', minSeconds: 3 }
-```
+- **Sending**: Resend API key (Sending access), from name, from address (must be on a domain verified in Resend), pause switch, and a "Send a test email" button
+- **Recipients**: send to, CC, BCC (comma-separated); reply goes to the visitor
+- **Email**: subject template (`{name}`, `{email}`, `{timeline}`, `{date}`); optional auto-reply to the visitor
+- **reCAPTCHA v3**: site key, secret key, score threshold (0.0–1.0), and what to do with low scores (file as spam, or show the visitor an error)
+- **Other spam protection**: honeypot (always on), minimum seconds on page, per-visitor hourly limit, max message length, blocked words
+- **Entries**: view, search, filter (inbox / spam / didn't send), delete, download as CSV; optional auto-delete after N days
 
-- **Formspree**: set `endpoint` to your form URL. Subject arrives as `[Website Inquiry] from <name>`, reply-to is the sender.
-- **Web3Forms**: `endpoint: 'https://api.web3forms.com/submit'`, `accessKey: '<key>'`.
-- **Custom**: any URL accepting a JSON POST (`name, email, message, timeline, subject`) and returning 2xx.
-- **Unconfigured** (default): the form validates, then tells the visitor nothing was sent and offers a pre-filled `mailto:` link to mike.billeter@gmail.com with the `[Website Inquiry]` subject.
+First visit to `/admin/forms/` asks you to set the admin password. Do that right after deploying. To reset a lost password, delete `auth.php` from the data folder.
 
-States: validation (inline, per field, focus moves to the first error), pending (button disabled, "Sending…"), sent, error (message kept in the form + mailto fallback), unconfigured, too-fast. Spam protection: a hidden honeypot field and a 3-second minimum time-to-submit — no CAPTCHA.
+**Files**: `forms/_lib.php` (shared code), `forms/submit.php` (endpoint), `forms/config.php` (public settings: reCAPTCHA site key, timing), `admin/forms/index.php` (settings page). Data (settings, password hash, entries) goes in `mb-forms-data/` *next to* the web root when the host allows it, otherwise in `forms/data/` (blocked by `.htaccess`; git-ignored). Every data file is a `.php` file that exits immediately, so it can't be downloaded. Needs PHP 7.4+ with cURL (or `allow_url_fopen`).
+
+The form never fakes success: if delivery is paused or not set up, the visitor gets the pre-filled `mailto:` link; if Resend fails, they see an error with the same link and the message is still saved under Entries → Didn't send. Opened from disk (`file://`), the form shows the error state.
 
 ## Headshot
 Original: `assets/mike-original.jpg` (1734×2048). Renditions: full portrait at 600/1000/1600w (About), 3:4 top-weighted crop at 500/900w (Home), 1:1 face crop at 400/800w (Y2K page, Open Graph). All `<img>` tags carry width/height and `srcset`/`sizes`; nothing is stretched.

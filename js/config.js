@@ -4,9 +4,9 @@ window.MBW_SITE = {
   url: 'https://www.mikebilleterwriting.com',
   email: 'mike.billeter@gmail.com',
   subjectPrefix: '[Website Inquiry]',
-  // Form delivery. Leave endpoint empty and the form says so honestly and offers a pre-filled mailto link.
-  //   formspree  → endpoint: 'https://formspree.io/f/<id>'
-  //   web3forms  → endpoint: 'https://api.web3forms.com/submit', accessKey: '<key>'
-  //   custom     → any endpoint that accepts JSON POST and returns 2xx
-  form: { endpoint: '', accessKey: '', minSeconds: 3 },
+  // Form delivery. The site's own PHP backend (forms/submit.php) sends through Resend;
+  // recipients, subject, reCAPTCHA and spam settings live at /admin/forms/, not here.
+  // configUrl supplies the public reCAPTCHA site key and timing from those settings.
+  // Leave endpoint empty and the form says so honestly and offers a pre-filled mailto link.
+  form: { endpoint: '/forms/submit.php', configUrl: '/forms/config.php', accessKey: '', minSeconds: 3 },
 };
