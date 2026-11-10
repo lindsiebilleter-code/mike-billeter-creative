@@ -1,0 +1,33 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>C — The page (greeked text lifts under the pointer)</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500&display=swap">
+<style>html,body{margin:0;height:100%;background:#fff;color:#0a0a0a;font-family:'Space Grotesk',system-ui,sans-serif;overflow:hidden}
+#hero{position:relative;height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:40px clamp(16px,3vw,40px) clamp(24px,4vw,56px);cursor:grab}
+canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+h1{position:relative;margin:0;font-weight:500;font-size:clamp(38px,8.4vw,136px);line-height:1.04;letter-spacing:-.035em;pointer-events:none}
+h1 span{display:block}h1 .g{color:#0b7a3e}
+.tag{position:absolute;top:18px;left:clamp(16px,3vw,40px);font-size:15px;font-weight:500}</style></head>
+<body><section id="hero"><canvas id="c"></canvas><p class="tag">C — The page (greeked text lifts under the pointer)</p>
+<h1><span>Most copywriter websites</span><span>sound like most</span><span>copywriter websites.</span><span class="g">This one tries not to.</span></h1></section>
+<script type="module">
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js';
+const parent=document.getElementById('hero'),canvas=document.getElementById('c');
+const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+const scene=new THREE.Scene();const camera=new THREE.PerspectiveCamera(38,1,.1,100);camera.position.set(0,0,15);
+let tx=0,ty=0,px=0,py=0,spin=0,spinV=0,drag=false,lx=0;
+addEventListener('pointermove',e=>{const r=parent.getBoundingClientRect();tx=(e.clientX-r.left)/r.width-.5;ty=(e.clientY-r.top)/r.height-.5;if(drag){const d=(e.clientX-lx)/r.width*Math.PI*1.6;spin+=d;spinV=d;lx=e.clientX}});
+parent.addEventListener('pointerdown',e=>{drag=true;lx=e.clientX;spinV=0;parent.style.cursor='grabbing'});addEventListener('pointerup',()=>{drag=false;parent.style.cursor='grab'});
+const size=()=>{const w=parent.clientWidth,h=parent.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();camera.position.z=w<700?20:15};size();addEventListener('resize',size);
+
+const words=[];const rows=26,cols=9;const geo=new THREE.BoxGeometry(1,.16,.06);const mat=new THREE.MeshBasicMaterial({color:0xcfcfcf});
+const inst=new THREE.InstancedMesh(geo,mat,rows*cols);const d=new THREE.Object3D();let i=0;
+for(let r=0;r<rows;r++){let x=-9;for(let c=0;c<cols;c++){const w=.6+Math.random()*1.8;if(x+w>9)break;words.push({x:x+w/2,y:(rows/2-r)*.62,w,i});d.position.set(x+w/2,(rows/2-r)*.62,0);d.scale.set(w,1,1);d.updateMatrix();inst.setMatrixAt(i,d.matrix);i++;x+=w+.35}}
+inst.count=i;const g=new THREE.Group();g.add(inst);g.rotation.x=-.9;g.position.y=-3;scene.add(g);camera.position.set(0,0,17);
+// one green word: the line that matters
+const green=new THREE.Mesh(new THREE.BoxGeometry(1,.16,.06),new THREE.MeshBasicMaterial({color:0x0b7a3e}));g.add(green);const gw=words[Math.floor(words.length*.42)];green.position.set(gw.x,gw.y,.05);green.scale.set(gw.w,1,1);
+const ray=new THREE.Raycaster(),plane=new THREE.Plane(new THREE.Vector3(0,0,1),0),hit=new THREE.Vector3(),ndc=new THREE.Vector2();
+let t0=performance.now();
+(function loop(now){requestAnimationFrame(loop);const t=(now-t0)/1000;px+=(tx-px)*.05;py+=(ty-py)*.05;
+ndc.set(px*2,-py*2);ray.setFromCamera(ndc,camera);const local=plane.clone().applyMatrix4(g.matrixWorld);ray.ray.intersectPlane(local,hit);const lp=hit?g.worldToLocal(hit.clone()):new THREE.Vector3(99,99,0);
+words.forEach(w=>{const dx=w.x-lp.x,dy=w.y-lp.y;const dist=Math.hypot(dx,dy);const lift=Math.max(0,1-dist/3.2);const wave=Math.sin(t*1.2+w.y*.7+w.x*.15)*.06;d.position.set(w.x,w.y,lift*lift*1.4+wave);d.scale.set(w.w,1,1);d.rotation.set(0,0,0);d.updateMatrix();inst.setMatrixAt(w.i,d.matrix)});inst.instanceMatrix.needsUpdate=true;
+green.position.z=.05+Math.sin(t*1.2+gw.y*.7+gw.x*.15)*.06;g.rotation.x=-.9+py*.1+Math.sin(t*.15)*.03;g.rotation.y=px*.15;renderer.render(scene,camera)})(t0);
+</script></body></html>

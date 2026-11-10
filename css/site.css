@@ -1,0 +1,27 @@
+/* Mike Billeter Writing — modern edition */
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: #ffffff; color: #0a0a0a; font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 18px; line-height: 1.5; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+a:hover { color: #0b7a3e; }
+::selection { background: #0b7a3e; color: #fff; }
+:focus-visible { outline: 2px solid #0b7a3e; outline-offset: 3px; }
+summary::-webkit-details-marker { display: none; }
+input, textarea, button { font: inherit; }
+@keyframes mbwCrtOut { 0% { opacity: 0; background: #fff; transform: scaleY(1); } 18% { opacity: 1; background: #fff; transform: scaleY(1); } 55% { opacity: 1; background: #fff; transform: scaleY(0.006); } 56% { opacity: 1; background: #000; transform: scaleY(1); } 100% { opacity: 1; background: #000; transform: scaleY(1); } }
+@keyframes mbwCrtIn { 0% { opacity: 1; } 45% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes mbwCaret { 50% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }
+
+/* state */
+[hidden] { display: none !important; }
+#edit-line [data-cut] { text-decoration-color: #0b7a3e; text-decoration-thickness: 2px; transition: color .35s ease; }
+#edit-line .is-cut { text-decoration: line-through; color: #9a9a9a; }
+#edit-line .is-on { opacity: 1 !important; transform: none !important; }
+
+/* hover / focus / active states (generated from the design) */
+.x1:hover { color: #0b7a3e; }
+.x2:hover { filter: grayscale(0); }
+.x3:focus { top: 12px; }
+.x4:focus { border-bottom-color: #0b7a3e; outline: none; box-shadow: 0 1px 0 0 #0b7a3e; }
+.x5:hover { background: #0a0a0a; color: #fff; }
+.x6:active { background: #0b7a3e; border-color: #0b7a3e; color: #fff; }
