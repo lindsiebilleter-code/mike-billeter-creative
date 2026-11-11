@@ -4,6 +4,9 @@ declare(strict_types=1);
 require dirname(__DIR__, 2) . '/forms/_lib.php';
 
 $https = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || (($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https');
+if (!$https && PHP_SAPI !== 'cli-server' && (string) ($_SERVER['SERVER_PORT'] ?? '') === '80') {
+  header('Location: https://' . preg_replace('/[^a-z0-9.:-]/i', '', (string) ($_SERVER['HTTP_HOST'] ?? 'mikebilleter.com')) . ($_SERVER['REQUEST_URI'] ?? '/admin/forms/'), true, 301); exit;
+}
 $nonce = base64_encode(random_bytes(12));
 header('X-Robots-Tag: noindex, nofollow');
 header('X-Frame-Options: DENY');
