@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /forms/
 
-Sitemap: https://www.mikebilleterwriting.com/sitemap.xml
+Sitemap: https://mikebilleter.com/sitemap.xml

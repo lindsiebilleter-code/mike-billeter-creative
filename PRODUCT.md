@@ -1,4 +1,4 @@
-# PRODUCT.md — Mike Billeter Writing
+# PRODUCT.md — Mike Billeter Creative
 
 ## What this is
 A portfolio and lead-generation site for Mike Billeter, a copywriter in Sioux Falls, South Dakota. Its one job: get the right kind of business owner to send Mike an email.

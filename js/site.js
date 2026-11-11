@@ -5,7 +5,7 @@
   const page = document.body.dataset.page || 'index';
 
   // 1999 edition: type "y2k" anywhere (outside text fields) or use the footer link.
-  const toY2k = () => MBWFx.go('y2k/' + page + '.html' + location.hash);
+  const toY2k = () => MBWFx.go('/y2k/' + (page === 'index' ? '' : page) + location.hash);
   MBWFx.typed('y2k', toY2k);
   const tog = document.getElementById('y2k-toggle'); if (tog) tog.addEventListener('click', toY2k);
 

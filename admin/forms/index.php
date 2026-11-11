@@ -171,7 +171,7 @@ $tail = fn($key) => $key === '' ? '' : '…' . substr($key, -4);
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Form Settings · Mike Billeter Writing</title>
+<title>Form Settings · Mike Billeter Creative</title>
 <link rel="icon" href="/assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -267,7 +267,7 @@ dl.detail dd { margin: 0; overflow-wrap: anywhere; }
 <body>
 <?php if ($tab === 'login'): ?>
 <main class="card">
-  <p class="brand">Mike Billeter Writing <span>· Forms</span></p>
+  <p class="brand">Mike Billeter Creative <span>· Forms</span></p>
   <?php if (!$hasPassword): ?>
     <h1>Set a password</h1>
     <p class="sub">This is the first visit to the form settings. Choose the password you’ll use to sign in here from now on.</p>
@@ -288,7 +288,7 @@ dl.detail dd { margin: 0; overflow-wrap: anywhere; }
 </main>
 <?php else: ?>
 <header class="top"><div class="wrap">
-  <span class="brand">Mike Billeter Writing <span>· Forms</span></span>
+  <span class="brand">Mike Billeter Creative <span>· Forms</span></span>
   <nav class="tabs" aria-label="Sections">
     <a href="?tab=settings"<?= $tab === 'settings' ? ' aria-current="page"' : '' ?>>Settings</a>
     <a href="?tab=entries&amp;status=inbox"<?= $tab === 'entries' ? ' aria-current="page"' : '' ?>>Entries <span class="count"><?= count($all) - $spamCount ?></span></a>

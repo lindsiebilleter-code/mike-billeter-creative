@@ -2,7 +2,7 @@
 (function () {
   MBWFx.arrive();
   const page = document.body.dataset.page || 'index';
-  const exit = () => MBWFx.go('../' + page + '.html' + location.hash);
+  const exit = () => MBWFx.go('/' + (page === 'index' ? '' : page) + location.hash);
   document.querySelectorAll('[data-exit]').forEach(b => b.addEventListener('click', exit));
   window.addEventListener('keydown', e => { if (e.key === 'Escape') exit(); });
   MBWFx.typed('y2k', exit);
