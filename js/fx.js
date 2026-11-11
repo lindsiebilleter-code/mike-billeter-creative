@@ -1,4 +1,8 @@
 // CRT transition between the modern site and the 1999 edition, plus the typed-word trigger.
+// Show clean URLs even when a server hands out /page.html (canonical tags already point at /page).
+if (/\.html$/.test(location.pathname) && location.protocol !== 'file:') {
+  try { history.replaceState(history.state, '', location.pathname.replace(/(?:index)?\.html$/, '') + location.search + location.hash); } catch (e) {}
+}
 window.MBWFx = (function () {
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function go(url) {

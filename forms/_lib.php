@@ -64,7 +64,7 @@ function mbf_default_settings(): array {
   return [
     'enabled' => true,
     'resend_api_key' => '',
-    'from_name' => 'Mike Billeter Writing',
+    'from_name' => 'Mike Billeter Creative',
     'from_email' => '',
     'to' => 'mike.billeter@gmail.com',
     'cc' => '',
@@ -73,7 +73,7 @@ function mbf_default_settings(): array {
     'reply_to_sender' => true,
     'autoreply_enabled' => false,
     'autoreply_subject' => 'Thanks for your note',
-    'autoreply_body' => "Hi {name},\n\nThanks for reaching out. Your message came through and I'll get back to you within a day or two.\n\nMike Billeter\nMike Billeter Writing",
+    'autoreply_body' => "Hi {name},\n\nThanks for reaching out. Your message came through and I'll get back to you within a day or two.\n\nMike Billeter\nMike Billeter Creative",
     'recaptcha_enabled' => false,
     'recaptcha_site_key' => '',
     'recaptcha_secret_key' => '',

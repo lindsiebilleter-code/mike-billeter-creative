@@ -1,0 +1,15 @@
+{
+  "name": "Mike Billeter Creative",
+  "short_name": "Mike Billeter",
+  "description": "Website copy, email campaigns, editing and ghostwriting by Sioux Falls copywriter Mike Billeter.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "browser",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    { "src": "/assets/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/assets/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/assets/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

@@ -168,7 +168,7 @@ Yes.
 [Title] Extra stuff
 [Heading1] Extras
 Footer Content
-© 2026 Mike Billeter Writing · Sioux Falls, SD · mike.billeter@gmail.com
+© 2026 Mike Billeter Creative · Sioux Falls, SD · mike.billeter@gmail.com
 —
 Contact form email routing
 Route form submissions to mike.billeter@gmail.com with subject line prefix '[Website Inquiry]'.

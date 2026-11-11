@@ -1,7 +1,7 @@
 // Site-wide configuration. Edit here; nothing else needs to change.
 window.MBW_SITE = {
-  name: 'Mike Billeter Writing',
-  url: 'https://www.mikebilleterwriting.com',
+  name: 'Mike Billeter Creative',
+  url: 'https://mikebilleter.com',
   email: 'mike.billeter@gmail.com',
   subjectPrefix: '[Website Inquiry]',
   // Form delivery. The site's own PHP backend (forms/submit.php) sends through Resend;

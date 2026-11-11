@@ -1,4 +1,4 @@
-# DESIGN.md — Mike Billeter Writing
+# DESIGN.md — Mike Billeter Creative
 
 Two complete visual identities joined by one hidden interaction.
 

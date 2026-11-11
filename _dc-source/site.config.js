@@ -1,8 +1,8 @@
 // Site-wide configuration. Edit here; nothing else needs to change.
 export const SITE = {
-  name: 'Mike Billeter Writing',
+  name: 'Mike Billeter Creative',
   // Public URL used for canonical links and structured data (no trailing slash).
-  url: 'https://www.mikebilleterwriting.com',
+  url: 'https://mikebilleter.com',
   email: 'mike.billeter@gmail.com',
   city: 'Sioux Falls',
   region: 'SD',

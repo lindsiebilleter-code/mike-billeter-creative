@@ -1,4 +1,4 @@
-# Mike Billeter Writing — website
+# Mike Billeter Creative — website
 
 Portfolio and lead-gen site for copywriter Mike Billeter (Sioux Falls, SD), with a hidden 1999 edition.
 
@@ -18,7 +18,17 @@ Static HTML — no build step, no framework. Upload the folder to any host.
 - `content/website-copy.txt` — plain-text extraction of the approved copy document
 
 ## Local development
-Open `index.html`. Service anchors are ordinary fragments (`services.html#email-campaigns`).
+Run `php -S localhost:8000 index.php` and open http://localhost:8000. Links are clean, root-relative URLs (`/services#email-campaigns`), so opening the files straight from disk no longer navigates between pages.
+
+## Clean URLs
+Pages are served without `.html`: `/services`, `/about`, `/y2k/services`. `index.php` is a small front controller: the server hands it any path that isn't a real file, and it serves the matching `.html` page, sends `/page/` and `/index` to their clean form with a 301, and returns `404.html` with a real 404 status for anything else. Old `/page.html` links still work: the canonical tag points at the clean URL and `js/fx.js` tidies the address bar. For a true 301 from `/page.html` (recommended), add this to the CloudPanel vhost, inside the `server { … }` block for port 443, above `location / {`:
+
+```nginx
+if ($request_uri ~ ^/(.*?)(?:index)?\.html(\?.*)?$) { return 301 /$1$2; }
+```
+
+## SEO
+`python3 tools/seo.py` regenerates each page's `<head>` SEO block (title, description, canonical, Open Graph/Twitter, icons, one JSON-LD `@graph` with the business, Mike, breadcrumbs, the priced services catalog and the FAQ), rewrites internal links, and rebuilds `sitemap.xml`, `robots.txt` and `llms.txt`. Edit titles and descriptions in `PAGES` at the top of that script, never in the HTML. FAQ answers and page descriptions are read from the pages so the structured data can't drift from the copy. `assets/og-image.jpg` (1200×630) is the social share image. The Y2K pages are `noindex, follow`. Source and draft folders (`_dc-source`, `_ds`, `explorations`, `uploads`, `content`) and the `.md` notes are excluded from deploys.
 
 ## Form delivery
 The contact forms (modern and Y2K) post to `forms/submit.php`, a small PHP backend that emails each message through **Resend** and keeps a copy. Everything is configured in the browser at **`/admin/forms/`**, not in code:

@@ -26,6 +26,9 @@ jobs:
           # that, runs are incremental again. If it drifts again, bump the
           # number.
           state-name: .ftp-deploy-sync-state-v2.json
+          # Source and working files below .gitignore are not part of the site;
+          # duplicate or draft pages would hurt search rankings. Excluding them
+          # also removes the copies already on the server.
           exclude: |
             **/.git/**
             **/.github/**
@@ -33,3 +36,12 @@ jobs:
             **/tools/**
             README.md
             .gitignore
+            _dc-source/**
+            _ds/**
+            explorations/**
+            uploads/**
+            content/**
+            CONTENT-NOTES.md
+            DESIGN.md
+            PRODUCT.md
+            support.js
