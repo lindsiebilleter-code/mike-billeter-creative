@@ -27,6 +27,16 @@ if (PHP_SAPI === 'cli-server') {
 }
 
 function moved(string $to): void { header('Location: ' . $to, true, 301); exit; }
+
+// Always use HTTPS. Plain-http requests on port 80 are sent to the https address;
+// a TLS-terminating proxy in front (X-Forwarded-Proto: https) is left alone.
+if (PHP_SAPI !== 'cli-server') {
+  $https = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || (($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https');
+  if (!$https && (string) ($_SERVER['SERVER_PORT'] ?? '') === '80' && preg_match('/^(www\.)?mikebilleter\.com$/i', (string) ($_SERVER['HTTP_HOST'] ?? ''))) {
+    moved('https://mikebilleter.com' . $uri);
+  }
+  if ($https) header('Strict-Transport-Security: max-age=15768000');
+}
 function page(string $file, int $status = 200): void {
   http_response_code($status);
   header('Content-Type: text/html; charset=utf-8');
