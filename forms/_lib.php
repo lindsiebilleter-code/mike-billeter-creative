@@ -212,13 +212,13 @@ function mbf_http_post(string $url, array $headers, string $body, int $timeout =
     $res = curl_exec($ch);
     $code = (int) curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
     $err = curl_error($ch);
-    curl_close($ch);
     return [$code, $res === false ? '' : (string) $res, $err];
   }
   $ctx = stream_context_create(['http' => ['method' => 'POST', 'header' => implode("\r\n", $headers), 'content' => $body, 'timeout' => $timeout, 'ignore_errors' => true]]);
   $res = @file_get_contents($url, false, $ctx);
   $code = 0;
-  foreach ($http_response_header ?? [] as $h) if (preg_match('#^HTTP/\S+\s+(\d{3})#', $h, $m)) $code = (int) $m[1];
+  $hdrs = function_exists('http_get_last_response_headers') ? (http_get_last_response_headers() ?? []) : ($http_response_header ?? []);
+  foreach ($hdrs as $h) if (preg_match('#^HTTP/\S+\s+(\d{3})#', $h, $m)) $code = (int) $m[1];
   return [$code, $res === false ? '' : (string) $res, $res === false ? 'Request failed' : ''];
 }
 
