@@ -19,6 +19,7 @@ SITE = 'https://mikebilleter.com'
 BRAND = 'Mike Billeter Creative'
 EMAIL = 'mike.billeter@gmail.com'
 TODAY = datetime.date.today().isoformat()
+SAME_AS = ['https://www.linkedin.com/in/mikebilleter/']  # add other profiles (Facebook page, etc.) here
 OG_IMAGE = SITE + '/assets/og-image.jpg'
 HEADSHOT = SITE + '/assets/mike-square-800.jpg'
 
@@ -133,7 +134,7 @@ def graph(key, page_html):
     person = {
         '@type': 'Person', '@id': SITE + '/#mike', 'name': 'Mike Billeter', 'givenName': 'Mike', 'familyName': 'Billeter',
         'jobTitle': 'Copywriter', 'url': SITE + '/about', 'image': HEADSHOT, 'email': EMAIL,
-        'worksFor': {'@id': SITE + '/#business'}, 'knowsAbout': KNOWS,
+        'worksFor': {'@id': SITE + '/#business'}, 'knowsAbout': KNOWS, 'sameAs': SAME_AS,
         'address': {'@type': 'PostalAddress', 'addressLocality': 'Sioux Falls', 'addressRegion': 'SD', 'addressCountry': 'US'},
     }
     website = {'@type': 'WebSite', '@id': SITE + '/#website', 'url': SITE + '/', 'name': BRAND,
